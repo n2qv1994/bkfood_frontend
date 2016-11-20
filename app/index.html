@@ -14,6 +14,9 @@
     <!-- lib -->
     <link rel="stylesheet" href="libs/css/sidenav.css" type="text/css" media="screen" />
     <!-- endlib -->
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
+    <script src="http://listjs.com/assets/javascripts/list.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/list.pagination.js/0.1.1/list.pagination.min.js"></script>
 </head>
 
 <body ng-app="bkFoodApp" id="main">
@@ -65,7 +68,7 @@
                 <ul class="nav navbar-nav navbar-right">
                     <li><a href="" onclick="openNav()"><span class="glyphicon glyphicon-shopping-cart"></a></li>
                     <li data-toggle="modal" data-target="#signupModal"><a href=""><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
-                    <li data-toggle="modal" data-target="#loginModal"><a href=""><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+                    <li data-toggle="modal" data-target="#loginModal"><a ng-href=""><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
                 </ul>
             </div>
         </div>
@@ -81,11 +84,11 @@
                     <form>
                         <div class="form-group">
                             <label for="text">Username:</label>
-                            <input type="text" class="form-control" id="username" placeholder="Enter username">
+                            <input type="text" class="form-control" id="username_login" placeholder="Enter username">
                         </div>
                         <div class="form-group">
                             <label for="pwd">Password:</label>
-                            <input type="password" class="form-control" id="pwd" placeholder="Enter password">
+                            <input type="password" class="form-control" id="pwd_login" placeholder="Enter password">
                         </div>
                         <div class="checkbox">
                             <label>
@@ -93,7 +96,7 @@
                         </div>
                     </form>
                     <div class="modal-footer">
-                        <button type="submit" class="btn btn-default">login</button>
+                        <button type="submit" ng-click="login()" class="btn btn-default">login</button>
                         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                     </div>
                 </div>
@@ -115,11 +118,11 @@
                         </div>
                         <div class="form-group">
                             <label for="text">Username:</label>
-                            <input type="text" class="form-control" id="username" placeholder="Enter username">
+                            <input type="text" class="form-control" id="username_signup" placeholder="Enter username">
                         </div>
                         <div class="form-group">
                             <label for="pwd">Password:</label>
-                            <input type="password" class="form-control" id="pwd" placeholder="Enter password">
+                            <input type="password" class="form-control" id="pwd_signup" placeholder="Enter password">
                         </div>
                         <div class="form-group">
                             <label for="email">Email:</label>
@@ -135,7 +138,7 @@
                         </div>
                     </form>
                     <div class="modal-footer">
-                        <button type="submit" class="btn btn-default">Signup</button>
+                        <button type="submit" class="btn btn-default" ng-click="sign_up()">Signup</button>
                         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                     </div>
                 </div>
@@ -213,6 +216,7 @@
     <!-- SiderBar -->
     <br>
     <div class="container">
+        <h1>{{name}}</h1>
         <div ng-view=""></div>
     </div>
     <div class="footer">
@@ -250,6 +254,8 @@
     <script src="scripts/controllers/about.js"></script>
     <script src="scripts/controllers/home.js"></script>
     <script src="scripts/controllers/login.js"></script>
+    <script src="scripts/controllers/search.js"></script>
+  
     <!-- endbuild -->
 </body>
 <script type="text/javascript">
@@ -262,5 +268,4 @@ function closeNav() {
     document.getElementById("mySidenav").style.width = "0";
 }
 </script>
-
 </html>

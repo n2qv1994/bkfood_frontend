@@ -39,7 +39,7 @@
                         </a>
                     </div>
                 </div>
-                <div class="item">
+               <!--  <div class="item">
                     <div class="col-lg-3 col-xs-3 col-md-3 col-sm-3">
                         <a href=""><img src="images/kitchen_adventurer_lemon.jpg" class="img-responsive">2
                             <button type="button" class="btn btn-success col-md-12" data-toggle="modal" data-target="#productModal">Mua</button>
@@ -80,11 +80,18 @@
                             <button type="button" class="btn btn-success col-md-12" data-toggle="modal" data-target="#productModal">Mua</button>
                         </a>
                     </div>
-                </div>
+                </div> -->
                 <div class="item">
                     <div class="col-lg-3 col-xs-3 col-md-3 col-sm-3">
                         <a href=""><img src="images/4.jpg" class="img-responsive">8
                             <button type="button" class="btn btn-success col-md-12" data-toggle="modal" data-target="#productModal">Mua</button>
+                        </a>
+                    </div>
+                </div>
+                <div ng-repeat="product in list_product" class="item">
+                    <div class="col-lg-3 col-xs-3 col-md-3 col-sm-3">
+                        <a href=""><img src="images/4.jpg" class="img-responsive">8
+                            <button type="button" class="btn btn-success col-md-12" data-toggle="modal" data-target="#productModal">{{product.product_name}}</button>
                         </a>
                     </div>
                 </div>

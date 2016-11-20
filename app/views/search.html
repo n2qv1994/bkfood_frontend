@@ -1,0 +1,63 @@
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
+<script src="http://listjs.com/assets/javascripts/list.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/list.pagination.js/0.1.1/list.pagination.min.js"></script>
+<style type="text/css">
+.pagination li {
+    display: inline-block;
+    padding: 5px;
+}
+</style>
+<div id="test-list">
+    <ul class="list">
+        <li>
+            <p class="name">Guybrush Threepwood</p>
+        </li>
+        <li>
+            <p class="name">Elaine Marley</p>
+        </li>
+        <li>
+            <p class="name">LeChuck</p>
+        </li>
+        <li>
+            <p class="name">Stan</p>
+        </li>
+        <li>
+            <p class="name">Voodoo Lady</p>
+        </li>
+        <li>
+            <p class="name">Herman Toothrot</p>
+        </li>
+        <li>
+            <p class="name">Meathook</p>
+        </li>
+        <li>
+            <p class="name">Carla</p>
+        </li>
+        <li>
+            <p class="name">Otis</p>
+        </li>
+        <li>
+            <p class="name">Rapp Scallion</p>
+        </li>
+        <li>
+            <p class="name">Rum Rogers Sr.</p>
+        </li>
+        <li>
+            <p class="name">Men of Low Moral Fiber</p>
+        </li>
+        <li>
+            <p class="name">Murray</p>
+        </li>
+        <li>
+            <p class="name">Cannibals</p>
+        </li>
+    </ul>
+    <ul class="pagination"></ul>
+</div>
+<script type="text/javascript">
+var monkeyList = new List('test-list', {
+    valueNames: ['name'],
+    page: 3,
+    plugins: [ListPagination({})]
+});
+</script>
