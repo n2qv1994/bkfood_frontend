@@ -201,7 +201,7 @@
     <br>
     <div class="rows">
         <input type="text" class="col-md-3 col-md-offset-8" id="search" placeholder="Enter keyword">
-        <i class="glyphicon glyphicon-search col-md-1"></i>
+        <a href="/#/search" ng-click="search()"><i class="glyphicon glyphicon-search col-md-1"></i></a>
     </div>
     <!-- Search -->
     <!-- SiderBar -->
@@ -216,7 +216,7 @@
     <!-- SiderBar -->
     <br>
     <div class="container">
-        <h1>{{name}}</h1>
+        <h1>{{root_scope}}</h1>
         <div ng-view=""></div>
     </div>
     <div class="footer">
@@ -260,7 +260,7 @@
 </body>
 <script type="text/javascript">
 function openNav() {
-    document.getElementById("mySidenav").style.width = "250px";
+    document.getElementById("mySidenav").style.width = "350px";
 }
 
 /* Set the width of the side navigation to 0 */
