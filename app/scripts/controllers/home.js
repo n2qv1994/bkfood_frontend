@@ -9,6 +9,14 @@
  */
 angular.module('bkFoodApp')
     .controller('HomeCtrl', function($scope, $rootScope) {
+        $scope.image_detail = "";
+        $scope.name_detail = "";
+        $scope.provider_detail = "";
+        $scope.category_detail = "";
+        $scope.description_detail = "";
+        $scope.rank_detail = "";
+        $scope.unit_detail = "";
+        $scope.price_detail="";
         $.ajax({
             url: "http://localhost:3000/api/getallproduct",
             type: "get",
@@ -55,8 +63,14 @@ angular.module('bkFoodApp')
             });
         };
         $scope.purchase = function() {
-            
+            var product =  "<tr><td>Picture</td><td>"+$scope.name_detail+"</td><td>"+$scope.price+"</td><td><button class='delete'>Delete</button></td></tr>";
+            $("#cart").append(product);
+
         };
+        $(".delete").click(function() {
+            console.log('delete');
+            $(this).parent().remove();
+        });
         $scope.show_detail = function(product) {
             console.log(product);
             $scope.image_detail = product.image;
@@ -66,5 +80,6 @@ angular.module('bkFoodApp')
             $scope.description_detail = product.description;
             $scope.rank_detail = product.rank;
             $scope.unit_detail = product.unit;
+            $scope.price = product.price;
         }
     });

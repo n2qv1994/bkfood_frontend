@@ -1,0 +1,45 @@
+<!-- <div class="col-lg-3 col-xs-3 col-md-3 col-sm-3" ng-repeat="product in list_search">
+    <a href=""><img src="images/{{product.image}}" class="img-responsive">
+        <button type="button" class="btn btn-success col-md-12" data-toggle="modal" data-target="#productModal">Mua</button>
+    </a>
+</div> -->
+<div class="col-md-2" ng-repeat="product in list_search">
+    <img class="col-md-12 img-thumbnail" ng-src="images/{{product.image}}">
+    <p class="col-md-12">{{product.product_name}}</p>
+    <p class="col-md-12">{{product.price}}</p>
+    <button type="button" class="btn btn-success col-md-12" data-toggle="modal" data-target="#productModal">Mua</button>
+</div>
+<ul class="pagination pagination-lg">
+    <li><a href="">Previous</a></li>
+    <li><a href="">1</a></li>
+    <li><a href="">2</a></li>
+    <li><a href="">3</a></li>
+    <li><a href="">4</a></li>
+    <li><a href="">5</a></li>
+    <li><a href="">Next</a></li>
+</ul>
+
+<!-- Modal product -->
+<div class="modal fade" id="productModal" role="dialog">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">{{name_detail}}</h4>
+            </div>
+            <div class="modal-body">
+                <!-- <img ng-src="images/{{image_detail}}"> -->
+                <p>Provider: {{provider_detail}}</p>
+                <p>Category: {{category_detail}}</p>
+                <p>Description: {{description_detail}}</p>
+                <p>Rank: {{rank_detail}}</p>
+                <p>Unit: {{unit_detail}}</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="purchase()">Mua</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Modal product -->

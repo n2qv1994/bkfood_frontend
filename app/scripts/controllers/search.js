@@ -19,7 +19,7 @@ angular.module('bkFoodApp')
                 },
                 dataType: "json",
                 success: function(result) {
-                    // console.log(result);
+                    console.log(result);
                     // $scope.$apply(function() {
                     //     $scope.list_product = result;
                     // });

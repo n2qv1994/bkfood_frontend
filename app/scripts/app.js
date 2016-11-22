@@ -24,20 +24,10 @@ angular
         controller: 'HomeCtrl',
         controllerAs: 'home'
       })
-      .when('/about', {
-        templateUrl: 'views/about.html',
-        controller: 'AboutCtrl',
-        controllerAs: 'about'
-      })
       .when('/management', {
         templateUrl: 'views/management.html',
         controller: 'ManagementCtrl',
         controllerAs: 'management'
-      })
-      .when('/dashboard', {
-        templateUrl: 'views/dashboard.html',
-        controller: 'DashboardCtrl',
-        controllerAs: 'dashboard'
       })
       .when('/search', {
         templateUrl: 'views/search.html',
