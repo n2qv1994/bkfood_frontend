@@ -17,6 +17,9 @@
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
     <script src="http://listjs.com/assets/javascripts/list.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/list.pagination.js/0.1.1/list.pagination.min.js"></script>
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet" integrity="sha256-MfvZlkHCEqatNoGiOXveE8FIwMzZg4W85qfrfIFBfYc= sha512-dTfge/zgoMYpP7QbHy4gWMEGsbsdZeCXz7irItjcC3sPUFtf0kuFbDz/ixG7ArTxmDjLXDmezHubeNikyKGVyQ==" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="styles/index.css">
 </head>
 
 <body ng-app="bkFoodApp" id="main">
@@ -67,12 +70,23 @@
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
                     <li><a href="" onclick="openNav()"><span class="glyphicon glyphicon-shopping-cart"></a></li>
-                    <li data-toggle="modal" data-target="#signupModal"><a href=""><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
-                    <li data-toggle="modal" data-target="#loginModal"><a ng-href=""><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+                    <li data-toggle="modal" data-target="#signupModal" id="signup"><a href=""><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+                    <li data-toggle="modal" data-target="#loginModal" id="login"><a ng-href=""><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+                    <li data-toggle="modal" data-target="" id="welcome" style="display:none" ng-click="info()"><a href=""><span class="glyphicon glyphicon-user"></span><i>Welcome</i> {{welcome}}</a></li>
+                    <li data-toggle="modal" ng-click="logout()" id="logout" style="display:none"><a ng-href=""><span class="glyphicon glyphicon-log-in"></span> Log out</a></li>
                 </ul>
             </div>
         </div>
     </nav>
+    <div id="infomation" style="display:none" class="col-md-12">
+        <div></div>
+        <img class="col-md-offset-2" src="images/n2qv.jpg" style="border-radius:50%;width:200px;height:200px">
+        <br>
+        <div class="col-md-12"><b class="col-md-3">Name:</b><i class="col-md-8 col-md-offset-1">Nguyen Nho Quoc Viet</i></div><br>
+        <div class="col-md-12"><b class="col-md-3">Password:</b><i class="col-md-8 col-md-offset-1">***********</i></div><br>
+        <div class="col-md-12"><b class="col-md-3">Address:</b><i class="col-md-8 col-md-offset-1">Kham Thien, HN</i></div><br>
+        <div class="col-md-12"><b class="col-md-3">Phone:</b><i class="col-md-8 col-md-offset-1">01664447655</i></div><br>
+    </div>
     <!-- navbar header -->
     <!-- Modal login -->
     <div class="modal fade" id="loginModal" role="dialog">
@@ -89,6 +103,9 @@
                         <div class="form-group">
                             <label for="pwd">Password:</label>
                             <input type="password" class="form-control" id="pwd_login" placeholder="Enter password">
+                        </div>
+                        <div class="alert alert-danger" style="display:none" id="wrong">
+                            <strong>Warning!</strong> {{message_res}}.
                         </div>
                         <div class="checkbox">
                             <label>
@@ -220,7 +237,7 @@
             <tbody id="cart">
             </tbody>
         </table>
-        <button>Order</button>
+        <button id="order">Order</button>
     </div>
     <!-- SiderBar -->
     <br>
@@ -230,8 +247,44 @@
     </div>
     <div class="footer">
         <div class="container">
-            <p><span class="glyphicon glyphicon-heart"></span> BK Food Team</p>
+            <hr>
+            <div class="text-center center-block">
+                <h1 class="txt-railway">- Hanoi university of science and technology -</h1>
+                <br />
+                <div class="container col-md-12">
+                    <div id="map" class="col-md-4 img-thumbnail" style="width:700px;height:300px;background:#ccccb3"></div>
+                    <div class="row-fluid col-md-4">
+                        <h2>KSCLC HTTT & TT K57 </h2>
+                        <address>
+                            <strong>BKFood Team </strong>
+                            <br>
+                            <br><a href=""><i>Vu Nguyen Giap</i></a>
+                            <br>
+                            <br><a href=""><i>Vu Pham Minh Hien</i> </a>
+                            <br>
+                            <br><a href=""><i>Nguyen Van Thinh</i></a>
+                            <br>
+                            <br><a href=""><i>Mai Van Thang</i> </a>
+                            <br>
+                            <br><a href=""><i>Nguyen Nho Quoc Viet</i></a>
+                            <br>
+                            <br>
+                            <abbr title="Phone">Phone:</abbr> 0123 456 789
+                        </address>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-12" style="margin-top:20px">
+                <a href="" class="col-md-offset-5"><i id="social-fb" class="fa fa-facebook-square fa-3x social"></i></a>
+                <a href=""><i id="social-tw" class="fa fa-twitter-square fa-3x social"></i></a>
+                <a href=""><i id="social-gp" class="fa fa-google-plus-square fa-3x social"></i></a>
+                <a href=""><i id="social-em" class="fa fa-envelope-square fa-3x social"></i></a>
+            </div>
         </div>
+        <hr>
+    </div>
+    <br />
+    </div>
     </div>
     <!-- Google Analytics: change UA-XXXXX-X to be your site's ID -->
     <script>
@@ -275,5 +328,16 @@ function closeNav() {
     document.getElementById("mySidenav").style.width = "0";
 }
 </script>
+<script>
+function myMap() {
+    var mapCanvas = document.getElementById("map");
+    var mapOptions = {
+        center: new google.maps.LatLng(21.004038, 105.841613),
+        zoom: 15
+    };
+    var map = new google.maps.Map(mapCanvas, mapOptions);
+}
+</script>
+<script src="https://maps.googleapis.com/maps/api/js?callback=myMap"></script>
 
 </html>

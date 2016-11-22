@@ -19,22 +19,27 @@
 .item:not(.prev) {
     visibility: visible;
 }
-
 .item.right:not(.prev) {
     visibility: hidden;
 }
-
 .rightest {
     visibility: visible;
 }
-
 .center {
     text-align: center;
-}
-
-.price {
-    color: green;
     font-size: 200%;
+}
+.group1 {
+    color: green
+}
+.group2 {
+    color: blue
+}
+.group3 {
+    color: #8a6d3b
+}
+.group4 {
+    color: #a94442
 }
 </style>
 <div class="container">
@@ -48,8 +53,8 @@
                     <div class="col-md-3">
                         <a href="">
                             <img src="images/kitchen_adventurer_cheesecake_brownie.jpg" class="img-responsive">
-                            <h3 class="col-md-12 center">XXX</h3>
-                            <p class="col-md-12 center price">99.999.999 $</p>
+                            <h3 class="col-md-12 center group1">XXX</h3>
+                            <p class="col-md-12 center group1">99.999.999 $</p>
                             <button type="button" class="btn btn-success col-md-12" data-toggle="modal" data-target="#productModal">Mua</button>
                         </a>
                     </div>
@@ -58,8 +63,8 @@
                     <div class="col-md-3">
                         <a href="">
                             <img ng-src="images/{{product.image}}" class="img-responsive">
-                            <h3 class="col-md-12 center">{{product.product_name}}</h3>
-                            <p class="col-md-12 center price">{{product.price}}</p>
+                            <h3 class="col-md-12 center group1">{{product.product_name}}</h3>
+                            <p class="col-md-12 center group1">{{product.price}}</p>
                             <button type="button" class="btn btn-success col-md-12" data-toggle="modal" data-target="#productModal" ng-click="show_detail(product)">Mua</button>
                         </a>
                     </div>
@@ -69,35 +74,157 @@
             <a class="right carousel-control" href=".carousel-product" data-slide="next"><i class="glyphicon glyphicon-chevron-right"></i></a>
         </div>
     </div>
-    <div class="col-md-12">
-        <div class="alert alert-success"style="margin-top:20px">
+    <div class="col-md-12" style="margin-top:20px">
+        <div class="alert alert-info">
             <strong>Main!</strong> xxx xxx.
         </div>
-        <div class="carousel carousel-product slide" id="myCarouselProduct">
+        <div class="carousel carousel-faker slide">
             <div class="carousel-inner">
                 <div class="item active">
                     <div class="col-md-3">
                         <a href="">
-                            <img src="images/kitchen_adventurer_cheesecake_brownie.jpg" class="img-responsive">
+                            <img src="images/1.jpg" class="img-responsive">
                             <h3 class="col-md-12 center">XXX</h3>
                             <p class="col-md-12 center price">99.999.999 $</p>
-                            <button type="button" class="btn btn-success col-md-12" data-toggle="modal" data-target="#productModal">Mua</button>
+                            <button type="button" class="btn btn-info col-md-12" data-toggle="modal" data-target="#productModal">Mua</button>
                         </a>
                     </div>
                 </div>
-                <div ng-repeat="product in list_product" class="item">
+                <div class="item">
                     <div class="col-md-3">
                         <a href="">
-                            <img ng-src="images/{{product.image}}" class="img-responsive">
-                            <h3 class="col-md-12 center">{{product.product_name}}</h3>
-                            <p class="col-md-12 center price">{{product.price}}</p>
-                            <button type="button" class="btn btn-success col-md-12" data-toggle="modal" data-target="#productModal" ng-click="show_detail(product)">Mua</button>
+                            <img src="images/2.jpg" class="img-responsive">
+                            <h3 class="col-md-12 center">XXX</h3>
+                            <p class="col-md-12 center price">99.999.999 $</p>
+                            <button type="button" class="btn btn-info col-md-12" data-toggle="modal" data-target="#productModal">Mua</button>
+                        </a>
+                    </div>
+                </div>
+                <div class="item">
+                    <div class="col-md-3">
+                        <a href="">
+                            <img src="images/3.jpg" class="img-responsive">
+                            <h3 class="col-md-12 center">XXX</h3>
+                            <p class="col-md-12 center price">99.999.999 $</p>
+                            <button type="button" class="btn btn-info col-md-12" data-toggle="modal" data-target="#productModal">Mua</button>
+                        </a>
+                    </div>
+                </div>
+                <div class="item">
+                    <div class="col-md-3">
+                        <a href="">
+                            <img src="images/4.jpg" class="img-responsive">
+                            <h3 class="col-md-12 center">XXX</h3>
+                            <p class="col-md-12 center price">99.999.999 $</p>
+                            <button type="button" class="btn btn-info col-md-12" data-toggle="modal" data-target="#productModal">Mua</button>
                         </a>
                     </div>
                 </div>
             </div>
-            <a class="left carousel-control" href=".carousel-product" data-slide="prev"><i class="glyphicon glyphicon-chevron-left"></i></a>
-            <a class="right carousel-control" href=".carousel-product" data-slide="next"><i class="glyphicon glyphicon-chevron-right"></i></a>
+            <a class="left carousel-control" href="" data-slide="prev"><i class="glyphicon glyphicon-chevron-left"></i></a>
+            <a class="right carousel-control" href="" data-slide="next"><i class="glyphicon glyphicon-chevron-right"></i></a>
+        </div>
+    </div>
+    <div class="col-md-12" style="margin-top:20px">
+        <div class="alert alert-warning">
+            <strong>Main!</strong> xxx xxx.
+        </div>
+        <div class="carousel carousel-faker slide">
+            <div class="carousel-inner">
+                <div class="item active">
+                    <div class="col-md-3">
+                        <a href="">
+                            <img src="images/1.jpg" class="img-responsive">
+                            <h3 class="col-md-12 center group3">XXX</h3>
+                            <p class="col-md-12 center group3">99.999.999 $</p>
+                            <button type="button" class="btn btn-warning col-md-12" data-toggle="modal" data-target="#productModal">Mua</button>
+                        </a>
+                    </div>
+                </div>
+                <div class="item">
+                    <div class="col-md-3">
+                        <a href="">
+                            <img src="images/2.jpg" class="img-responsive">
+                            <h3 class="col-md-12 center group3">XXX</h3>
+                            <p class="col-md-12 center group3">99.999.999 $</p>
+                            <button type="button" class="btn btn-warning col-md-12" data-toggle="modal" data-target="#productModal">Mua</button>
+                        </a>
+                    </div>
+                </div>
+                <div class="item">
+                    <div class="col-md-3">
+                        <a href="">
+                            <img src="images/3.jpg" class="img-responsive">
+                            <h3 class="col-md-12 center group3">XXX</h3>
+                            <p class="col-md-12 center group3">99.999.999 $</p>
+                            <button type="button" class="btn btn-warning col-md-12" data-toggle="modal" data-target="#productModal">Mua</button>
+                        </a>
+                    </div>
+                </div>
+                <div class="item">
+                    <div class="col-md-3">
+                        <a href="">
+                            <img src="images/4.jpg" class="img-responsive">
+                            <h3 class="col-md-12 center group3">XXX</h3>
+                            <p class="col-md-12 center group3">99.999.999 $</p>
+                            <button type="button" class="btn btn-warning col-md-12" data-toggle="modal" data-target="#productModal">Mua</button>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <a class="left carousel-control" href="" data-slide="prev"><i class="glyphicon glyphicon-chevron-left"></i></a>
+            <a class="right carousel-control" href="" data-slide="next"><i class="glyphicon glyphicon-chevron-right"></i></a>
+        </div>
+    </div>
+    <div class="col-md-12" style="margin-top:20px">
+        <div class="alert alert-danger">
+            <strong>Main!</strong> xxx xxx.
+        </div>
+        <div class="carousel carousel-faker slide">
+            <div class="carousel-inner">
+                <div class="item active">
+                    <div class="col-md-3">
+                        <a href="">
+                            <img src="images/1.jpg" class="img-responsive">
+                            <h3 class="col-md-12 center group4">XXX</h3>
+                            <p class="col-md-12 center group4">99.999.999 $</p>
+                            <button type="button" class="btn btn-danger col-md-12" data-toggle="modal" data-target="#productModal">Mua</button>
+                        </a>
+                    </div>
+                </div>
+                <div class="item">
+                    <div class="col-md-3">
+                        <a href="">
+                            <img src="images/2.jpg" class="img-responsive">
+                            <h3 class="col-md-12 center group4">XXX</h3>
+                            <p class="col-md-12 center group4">99.999.999 $</p>
+                            <button type="button" class="btn btn-danger col-md-12" data-toggle="modal" data-target="#productModal">Mua</button>
+                        </a>
+                    </div>
+                </div>
+                <div class="item">
+                    <div class="col-md-3">
+                        <a href="">
+                            <img src="images/3.jpg" class="img-responsive">
+                            <h3 class="col-md-12 center group4">XXX</h3>
+                            <p class="col-md-12 center group4">99.999.999 $</p>
+                            <button type="button" class="btn btn-danger col-md-12" data-toggle="modal" data-target="#productModal">Mua</button>
+                        </a>
+                    </div>
+                </div>
+                <div class="item">
+                    <div class="col-md-3">
+                        <a href="">
+                            <img src="images/4.jpg" class="img-responsive">
+                            <h3 class="col-md-12 center group4">XXX</h3>
+                            <p class="col-md-12 center group4">99.999.999 $</p>
+                            <button type="button" class="btn btn-danger col-md-12" data-toggle="modal" data-target="#productModal">Mua</button>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <a class="left carousel-control" href="" data-slide="prev"><i class="glyphicon glyphicon-chevron-left"></i></a>
+            <a class="right carousel-control" href="" data-slide="next"><i class="glyphicon glyphicon-chevron-right"></i></a>
         </div>
     </div>
 </div>
@@ -131,6 +258,32 @@ $('#myCarouselProduct').carousel({
     interval: 40000
 });
 $('.carousel-product .item').each(function() {
+    var next = $(this).next();
+    if (!next.length) {
+        next = $(this).siblings(':first');
+    }
+    next.children(':first-child').clone().appendTo($(this));
+
+    for (var i = 0; i < 2; i++) {
+
+        next = next.next();
+
+        if (!next.length) {
+
+            next = jQuery(this).siblings(':first');
+
+        }
+
+        next.children(':first-child').clone().appendTo($(this));
+
+    }
+});
+</script>
+<script type="text/javascript">
+$('#myCarouselProduct').carousel({
+    interval: 40000
+});
+$('.carousel-faker .item').each(function() {
     var next = $(this).next();
     if (!next.length) {
         next = $(this).siblings(':first');

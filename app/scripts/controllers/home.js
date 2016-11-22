@@ -16,7 +16,8 @@ angular.module('bkFoodApp')
         $scope.description_detail = "";
         $scope.rank_detail = "";
         $scope.unit_detail = "";
-        $scope.price_detail="";
+        $scope.price_detail = "";
+        var hide = true;
         $.ajax({
             url: "http://localhost:3000/api/getallproduct",
             type: "get",
@@ -37,6 +38,25 @@ angular.module('bkFoodApp')
                 });
             }
         });
+        $rootScope.logout = function() {
+            $("#login").show();
+            $("#signup").show();
+            $("#welcome").hide();
+            $("#logout").hide();
+        }
+        
+        $rootScope.info = function () { 
+            if(hide) {
+                $("#infomation").show(1000);
+                hide = false;
+                console.log("show");
+            }
+            else{
+                $("#infomation").hide(1000);
+                hide = true;
+                console.log("hide");
+            }
+        }
         $rootScope.login = function() {
             var data = {
                 username: $("#username_login").val(),
@@ -51,25 +71,33 @@ angular.module('bkFoodApp')
                 },
                 dataType: "json",
                 success: function(result) {
-                    console.log(result);
+                    $("#loginModal").modal("hide");
+                    $("#login").hide();
+                    $("#signup").hide();
+                    $("#welcome").show();
+                    $("#logout").show();
+                    $scope.$apply(function() {
+                        $rootScope.welcome = result.username;
+                    });
                 },
                 error: function(result) {
-                    console.log({
-                        message: {
-                            error: true
-                        }
-                    });
+                    $rootScope.message_res = result.responseText;
+                    $("#wrong").show();
+                    console.log(result.responseText);
                 }
             });
         };
         $scope.purchase = function() {
-            var product =  "<tr><td>Picture</td><td>"+$scope.name_detail+"</td><td>"+$scope.price+"</td><td><button class='delete'>Delete</button></td></tr>";
+            var product = "<tr><td>Picture</td><td>" + $scope.name_detail + "</td><td>" + $scope.price + "</td><td><button class='delete'>Delete</button></td></tr>";
             $("#cart").append(product);
 
         };
-        $(".delete").click(function() {
+        $("#cart").on('click', '.delete', function() {
             console.log('delete');
-            $(this).parent().remove();
+            $(this).parent().parent().remove();
+        });
+        $('#order').on('click', function() {
+            console.log('order');
         });
         $scope.show_detail = function(product) {
             console.log(product);
