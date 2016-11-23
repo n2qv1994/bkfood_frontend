@@ -8,7 +8,7 @@
  * Controller of the bkFoodApp
  */
 angular.module('bkFoodApp')
-    .controller('HomeCtrl', function($scope, $rootScope) {
+    .controller('HomeCtrl', function($scope, $rootScope, $location) {
         $scope.image_detail = "";
         $scope.name_detail = "";
         $scope.provider_detail = "";
@@ -18,6 +18,8 @@ angular.module('bkFoodApp')
         $scope.unit_detail = "";
         $scope.price_detail = "";
         var hide = true;
+        var user_id = "";
+        var username = "";
         $.ajax({
             url: "http://localhost:3000/api/getallproduct",
             type: "get",
@@ -39,19 +41,35 @@ angular.module('bkFoodApp')
             }
         });
         $rootScope.logout = function() {
-            $("#login").show();
-            $("#signup").show();
-            $("#welcome").hide();
-            $("#logout").hide();
-        }
-        
-        $rootScope.info = function () { 
-            if(hide) {
+            var _url = "http://localhost:3000/api/signout/" + username;
+            $.ajax({
+                url: _url,
+                type: "get",
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                dataType: "json",
+                success: function(result) {
+                    $("#login").show();
+                    $("#signup").show();
+                    $("#welcome").hide();
+                    $("#logout").hide();
+                    $("#infomation").hide(1000);
+                    hide = true;
+                },
+                error: function(result) {
+                    console.log(result);
+                }
+            });
+
+        };
+
+        $rootScope.info = function() {
+            if (hide) {
                 $("#infomation").show(1000);
                 hide = false;
                 console.log("show");
-            }
-            else{
+            } else {
                 $("#infomation").hide(1000);
                 hide = true;
                 console.log("hide");
@@ -71,6 +89,8 @@ angular.module('bkFoodApp')
                 },
                 dataType: "json",
                 success: function(result) {
+                    user_id = result._id;
+                    username = result.username;
                     $("#loginModal").modal("hide");
                     $("#login").hide();
                     $("#signup").hide();
@@ -78,6 +98,11 @@ angular.module('bkFoodApp')
                     $("#logout").show();
                     $scope.$apply(function() {
                         $rootScope.welcome = result.username;
+                        $rootScope.info_name = result.name;
+                        $rootScope.info_password = result.password;
+                        $rootScope.info_email = result.email;
+                        $rootScope.info_address = result.location;
+                        $rootScope.info_phonenumber = result.phone;
                     });
                 },
                 error: function(result) {
@@ -87,6 +112,82 @@ angular.module('bkFoodApp')
                 }
             });
         };
+        $rootScope.edit_info = function() {
+            console.log(user_id);
+            var data = {
+                user_id: user_id,
+                name: $("#info_name").val(),
+                password: $("#info_password").val(),
+                email: $("#email_signup").val(),
+                location: $("#info_address").val(),
+                phone: $("#info_phonenumber").val()
+            };
+            $.ajax({
+                url: "http://localhost:3000/api/editprofile",
+                type: "post",
+                data: JSON.stringify(data),
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                dataType: "json",
+                success: function(result) {
+                    console.log("success");
+                    $("#infomation").hide();
+                    hide = true;
+                    $("#verifyModal").modal("show");
+                    $rootScope.verify = result.responseText;
+                },
+                error: function(result) {
+                    console.log(result);
+                    console.log("error");
+                    $("#infomation").hide();
+                    hide = true;
+                    $("#verifyModal").modal("show");
+                    $rootScope.verify = result.responseText;
+                }
+            });
+        };
+        $rootScope.sign_up = function() {
+            var data = {
+                name: $("#name_signup").val(),
+                username: $("#username_signup").val(),
+                password: $("#pwd_signup").val(),
+                email: $("#email_signup").val(),
+                location: $("#address_signup").val(),
+                phone: $("#phonenumber_signup").val()
+            };
+            $.ajax({
+                url: "http://localhost:3000/api/signup",
+                type: "post",
+                data: JSON.stringify(data),
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                dataType: "json",
+                success: function(result) {
+                    $("#name_signup").val("");
+                    $("#username_signup").val("");
+                    $("#pwd_signup").val("");
+                    $("#email_signup").val("");
+                    $("#address_signup").val("");
+                    $("#phonenumber_signup").val("");
+                    $("#sign_up_success").show();
+                    $("#sign_up_error").hide();
+                },
+                error: function(result) {
+                    console.log(result);
+                    $("#sign_up_success").hide();
+                    $("#sign_up_error").show();
+                    $scope.$apply(function() {
+                        $rootScope.message_res_signup = result.responseText;
+                    });
+                }
+            });
+        };
+        $rootScope.cancel = function() {
+            $("#infomation").hide(1000);
+            hide = true;
+        }
         $scope.purchase = function() {
             var product = "<tr><td>Picture</td><td>" + $scope.name_detail + "</td><td>" + $scope.price + "</td><td><button class='delete'>Delete</button></td></tr>";
             $("#cart").append(product);
@@ -109,5 +210,8 @@ angular.module('bkFoodApp')
             $scope.rank_detail = product.rank;
             $scope.unit_detail = product.unit;
             $scope.price = product.price;
-        }
+        };
+        $rootScope.upgrade = function() {
+            $location.path("/management");
+        };
     });

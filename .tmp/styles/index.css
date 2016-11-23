@@ -35,11 +35,23 @@
  
  #infomation {
      width: 300px;
-     height: 400px;
+     height: 600px;
      background-color: #f5e5d0;
      z-index: 10;
      position: fixed;
      right: 0;
      top: 50px;
      border-radius: 5px;
+ }
+ #search-box {
+     background-color: #a1cae2;
+     height: 38px;
+     width: 300px;
+     border-radius: 5px;
+     margin-right: 10px;
+     margin-left: 900px; 
+ };
+ .sidenav {
+     background-color: #e4c1e3;
+     overflow-y: scroll;
  }
