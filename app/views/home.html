@@ -51,7 +51,7 @@
             <div class="carousel-inner">
                 <div class="item active">
                     <div class="col-md-3">
-                        <a href="">
+                        <a ng-href="">
                             <img src="images/kitchen_adventurer_cheesecake_brownie.jpg" class="img-responsive">
                             <h3 class="col-md-12 center group1">XXX</h3>
                             <p class="col-md-12 center group1">99.999.999 $</p>
@@ -61,7 +61,7 @@
                 </div>
                 <div ng-repeat="product in list_product" class="item">
                     <div class="col-md-3">
-                        <a href="">
+                        <a ng-href="">
                             <img ng-src="images/{{product.image}}" class="img-responsive">
                             <h3 class="col-md-12 center group1">{{product.product_name}}</h3>
                             <p class="col-md-12 center group1">{{product.price}}</p>
@@ -254,30 +254,30 @@
 </div>
 <!-- Modal product -->
 <script type="text/javascript">
-$('#myCarouselProduct').carousel({
-    interval: 40000
-});
-$('.carousel-product .item').each(function() {
-    var next = $(this).next();
-    if (!next.length) {
-        next = $(this).siblings(':first');
-    }
-    next.children(':first-child').clone().appendTo($(this));
+// $('#myCarouselProduct').carousel({
+//     interval: 40000
+// });
+// $('.carousel-product .item').each(function() {
+//     var next = $(this).next();
+//     if (!next.length) {
+//         next = $(this).siblings(':first');
+//     }
+//     next.children(':first-child').clone().appendTo($(this));
 
-    for (var i = 0; i < 2; i++) {
+//     for (var i = 0; i < 2; i++) {
 
-        next = next.next();
+//         next = next.next();
 
-        if (!next.length) {
+//         if (!next.length) {
 
-            next = jQuery(this).siblings(':first');
+//             next = jQuery(this).siblings(':first');
 
-        }
+//         }
 
-        next.children(':first-child').clone().appendTo($(this));
+//         next.children(':first-child').clone().appendTo($(this));
 
-    }
-});
+//     }
+// });
 </script>
 <script type="text/javascript">
 $('#myCarouselProduct').carousel({
