@@ -1,48 +1,60 @@
-<style type="text/css">
-.carousel-inner .active.left {
-    left: -33%;
-}
 
-.carousel-inner .next {
-    left: 33%;
-}
-
-.carousel-inner .prev {
-    left: -33%;
-}
-
-.carousel-control.left,
-.carousel-control.right {
-    background-image: none;
-}
-
-.item:not(.prev) {
-    visibility: visible;
-}
-.item.right:not(.prev) {
-    visibility: hidden;
-}
-.rightest {
-    visibility: visible;
-}
-.center {
-    text-align: center;
-    font-size: 200%;
-}
-.group1 {
-    color: green
-}
-.group2 {
-    color: blue
-}
-.group3 {
-    color: #8a6d3b
-}
-.group4 {
-    color: #a94442
-}
-</style>
 <div class="container">
+    <div class="col-md-12" style="">
+        <div class="alert alert-info" style="">
+            <strong>Hang moi ve!</strong>
+        </div>
+        <div class="carousel carousel-product slide" id="myCarouselProduct" style="">
+            <div class="carousel-inner">
+                <div class="item active">
+                    <a ng-href="">
+                        <div class="col-lg-3 col-xs-3 col-md-3 col-sm-3" data-toggle="modal" data-target="#productModal">
+                            <div class="product" style="background-image: url('images/11.jpg');">
+                                <img src="images/new-star.gif" style="width:80px;height:80px">
+                                <p class="product-name ">Nuoc cam</p>
+                                <p class="product-price ">99.000 $</p>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                <div class="item">
+                    <a ng-href="">
+                        <div class="col-lg-3 col-xs-3 col-md-3 col-sm-3" data-toggle="modal" data-target="#productModal">
+                            <div class="product" style="background-image: url('images/12.jpg');">
+                                <img src="images/new-star.gif" style="width:80px;height:80px">
+                                <h2 class="product-name ">Nuoc tao</h2>
+                                <h2 class="product-price ">99.000 $</h2>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                <div class="item">
+                    <a ng-href="">
+                        <div class="col-lg-3 col-xs-3 col-md-3 col-sm-3" data-toggle="modal" data-target="#productModal">
+                            <div class="product" style="background-image: url('images/13.jpg');">
+                                <img src="images/new-star.gif" style="width:80px;height:80px">
+                                <h2 class="product-name "><span>Nuoc dua</span></h2>
+                                <h2 class="product-price "><span>99.000 $</span></h2>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                <div class="item">
+                    <a ng-href="">
+                        <div class="col-lg-3 col-xs-3 col-md-3 col-sm-3" data-toggle="modal" data-target="#productModal">
+                            <div class="product" style="background-image: url('images/14.jpg');">
+                                <img src="images/new-star.gif" style="width:80px;height:80px">
+                                <h2 class="product-name "><span>Nuoc dua hau</span></h2>
+                                <h2 class="product-price "><span>99.000 $</span></h2>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+            <a class="left carousel-control" href=".carousel-product" data-slide="prev"><i class="glyphicon glyphicon-chevron-left"></i></a>
+            <a class="right carousel-control" href=".carousel-product" data-slide="next"><i class="glyphicon glyphicon-chevron-right"></i></a>
+        </div>
+    </div>
     <div class="col-md-12">
         <div class="alert alert-success">
             <strong>Main!</strong> xxx xxx.

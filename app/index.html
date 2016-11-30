@@ -13,6 +13,7 @@
     <!-- endbower -->
     <!-- lib -->
     <link rel="stylesheet" href="libs/css/sidenav.css" type="text/css" media="screen" />
+    <link rel="stylesheet" type="text/css" href="styles/home.css">
     <!-- endlib -->
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
     <script src="http://listjs.com/assets/javascripts/list.min.js"></script>
@@ -66,7 +67,7 @@
                     <li><a href="">Vila</a></li>
                     <li><a href="">Island</a></li>
                     <li><a href="">About Me</a></li>
-                    <li><a href="/#/management">Management</a></li>
+                    <li id="management" style="display:none"><a href="/#/management">Management</a></li>
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
                     <li><a href="" onclick="openNav()"><span class="glyphicon glyphicon-shopping-cart"></a></li>
@@ -324,6 +325,7 @@
                             <br>
                             <abbr title="Phone">Phone:</abbr> 0123 456 789
                         </address>
+                        <div>{{root_id}}</div>
                     </div>
                 </div>
             </div>
@@ -369,6 +371,7 @@
     <script src="scripts/controllers/index.js"></script>
     <script src="scripts/controllers/home.js"></script>
     <script src="scripts/controllers/search.js"></script>
+    <script src="scripts/controllers/management.js"></script>
     <!-- endbuild -->
 </body>
 <script type="text/javascript">
@@ -392,5 +395,10 @@ function myMap() {
 }
 </script>
 <script src="https://maps.googleapis.com/maps/api/js?callback=myMap"></script>
+<!-- <script src="/socket.io/socket.io.js"></script> -->
+<script type="text/javascript">
+// var socket = io('/api');
+// var socket = io();
+</script>
 
 </html>

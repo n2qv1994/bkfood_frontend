@@ -18,7 +18,6 @@ angular.module('bkFoodApp')
         $scope.unit_detail = "";
         $scope.price_detail = "";
         var hide = true;
-        var user_id = "";
         var username = "";
         $.ajax({
             url: "http://localhost:3000/api/getallproduct",
@@ -28,6 +27,7 @@ angular.module('bkFoodApp')
             },
             dataType: "json",
             success: function(result) {
+                console.log(result);
                 $scope.$apply(function() {
                     $scope.list_product = result;
                 });
@@ -113,13 +113,14 @@ angular.module('bkFoodApp')
                 },
                 dataType: "json",
                 success: function(result) {
-                    user_id = result._id;
+                    $rootScope.root_id = result._id;
                     username = result.username;
                     $("#loginModal").modal("hide");
                     $("#login").hide();
                     $("#signup").hide();
                     $("#welcome").show();
                     $("#logout").show();
+                    $("#management").show();
                     $scope.$apply(function() {
                         $rootScope.welcome = result.username;
                         $rootScope.info_name = result.name;

@@ -24,15 +24,15 @@ angular
         controller: 'HomeCtrl',
         controllerAs: 'home'
       })
-      .when('/management', {
-        templateUrl: 'views/management.html',
-        controller: 'ManagementCtrl',
-        controllerAs: 'management'
-      })
       .when('/search', {
         templateUrl: 'views/search.html',
         controller: 'SearchCtrl',
         controllerAs: 'search'
+      })
+      .when('/management', {
+        templateUrl: 'views/management.html',
+        controller: 'ManagementCtrl',
+        controllerAs: 'management'
       })
       .otherwise({
         redirectTo: '/'
