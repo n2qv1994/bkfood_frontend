@@ -34,27 +34,27 @@ angular.module('bkFoodApp')
                 $('#myCarouselProduct').carousel({
                     interval: 40000
                 });
-                $('.carousel-product .item').each(function() {
-                    var next = $(this).next();
-                    if (!next.length) {
-                        next = $(this).siblings(':first');
-                    }
-                    next.children(':first-child').clone().appendTo($(this));
+                // $('.carousel-product .item').each(function() {
+                //     var next = $(this).next();
+                //     if (!next.length) {
+                //         next = $(this).siblings(':first');
+                //     }
+                //     next.children(':first-child').clone().appendTo($(this));
 
-                    for (var i = 0; i < 2; i++) {
+                //     for (var i = 0; i < 2; i++) {
 
-                        next = next.next();
+                //         next = next.next();
 
-                        if (!next.length) {
+                //         if (!next.length) {
 
-                            next = jQuery(this).siblings(':first');
+                //             next = jQuery(this).siblings(':first');
 
-                        }
+                //         }
 
-                        next.children(':first-child').clone().appendTo($(this));
+                //         next.children(':first-child').clone().appendTo($(this));
 
-                    }
-                });
+                //     }
+                // });
             },
             error: function(result) {
                 console.log({
@@ -113,8 +113,9 @@ angular.module('bkFoodApp')
                 },
                 dataType: "json",
                 success: function(result) {
-                    $rootScope.root_id = result._id;
-                    username = result.username;
+                    console.log(result);
+                    $rootScope.root_id = result.user._id;
+                    username = result.user.username;
                     $("#loginModal").modal("hide");
                     $("#login").hide();
                     $("#signup").hide();
@@ -122,12 +123,12 @@ angular.module('bkFoodApp')
                     $("#logout").show();
                     $("#management").show();
                     $scope.$apply(function() {
-                        $rootScope.welcome = result.username;
-                        $rootScope.info_name = result.name;
-                        $rootScope.info_password = result.password;
-                        $rootScope.info_email = result.email;
-                        $rootScope.info_address = result.location;
-                        $rootScope.info_phonenumber = result.phone;
+                        $rootScope.welcome = result.user.username;
+                        $rootScope.info_name = result.user.name;
+                        $rootScope.info_password = result.user.password;
+                        $rootScope.info_email = result.user.email;
+                        $rootScope.info_address = result.user.location;
+                        $rootScope.info_phonenumber = result.user.phone;
                     });
                 },
                 error: function(result) {

@@ -30,6 +30,40 @@ angular.module('bkFoodApp')
                 console.log("err");
             }
         });
+        $.ajax({
+            url: "http://localhost:3000/api/getproductbycategory/" + $rootScope.root_id + "/banh",
+            type: "get",
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            dataType: "json",
+            success: function(result) {
+                console.log(result[0]);
+                $scope.$apply(function() {
+                    $scope.list_banh = result;
+                });
+            },
+            error: function(result) {
+                console.log("err");
+            }
+        });
+        $.ajax({
+            url: "http://localhost:3000/api/getproductbycategory/" + $rootScope.root_id + "/gai",
+            type: "get",
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            dataType: "json",
+            success: function(result) {
+                console.log(result[0]);
+                $scope.$apply(function() {
+                    $scope.list_gai = result;
+                });
+            },
+            error: function(result) {
+                console.log("err");
+            }
+        });
         $scope.add_product = function() {
             if ($rootScope.root_id == "" || $rootScope.root_id == null || $rootScope.root_id == undefined) {
                 alert("u must login");
@@ -124,4 +158,19 @@ angular.module('bkFoodApp')
                 }
             });
         };
+        $scope.get_all = function() {
+            $("#all-product-manager").show(1000);
+            $("#banh-product-manager").hide();
+            $("#gai-product-manager").hide();
+        };
+        $scope.get_banh = function() {
+            $("#all-product-manager").hide();
+            $("#banh-product-manager").show(1000);
+            $("#gai-product-manager").hide();
+        };
+        $scope.get_gai = function() {
+            $("#all-product-manager").hide();
+            $("#banh-product-manager").hide();
+            $("#gai-product-manager").show(1000);
+        }
     });
