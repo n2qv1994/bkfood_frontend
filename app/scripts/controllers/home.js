@@ -19,6 +19,21 @@ angular.module('bkFoodApp')
         $scope.price_detail = "";
         var hide = true;
         var username = "";
+        var socket = null;
+        var key_param = "username=giapvn";
+        socket = io.connect('http://localhost:3000/', { reconnect: true, query: key_param, forceNew: true });
+        $('#order').on('click', function() {
+            var data = {};
+            data.from = username;
+            data.to = "giapvn";
+            data.message = "dm Giap Tuat";
+            socket.emit('order', data);
+        });
+        socket.on('order', function(data) {
+            $rootScope.verity = "Dm Giap Tuat";
+            $("#verifyModal").modal("show");
+        });
+
         $.ajax({
             url: "http://localhost:3000/api/getallproduct",
             type: "get",
@@ -85,7 +100,6 @@ angular.module('bkFoodApp')
                     console.log(result);
                 }
             });
-
         };
 
         $rootScope.info = function() {
@@ -122,6 +136,20 @@ angular.module('bkFoodApp')
                     $("#welcome").show();
                     $("#logout").show();
                     $("#management").show();
+                    // var key_param = "username=" + result.user.username;
+                    // socket = io.connect('http://localhost:3000/', { reconnect: true, query: key_param, forceNew: true });
+                    // socket.on('order', function(data) {
+                    //     $rootScope.verity = data.from + "say: " + data.message;
+                    //     $("#verifyModal").modal("show");
+                    //     console.log(data);
+                    // });
+                    // $('#order').on('click', function() {
+                    //     var data = {};
+                    //     data.from = username;
+                    //     data.to = "giapvn";
+                    //     data.message = "dm Giap Tuat";
+                    //     socket.emit('order', data);
+                    // });
                     $scope.$apply(function() {
                         $rootScope.welcome = result.user.username;
                         $rootScope.info_name = result.user.name;
@@ -139,9 +167,8 @@ angular.module('bkFoodApp')
             });
         };
         $rootScope.edit_info = function() {
-            console.log(user_id);
             var data = {
-                user_id: user_id,
+                user_id: $rootScope.root_id,
                 name: $("#info_name").val(),
                 password: $("#info_password").val(),
                 email: $("#email_signup").val(),
@@ -223,9 +250,7 @@ angular.module('bkFoodApp')
             console.log('delete');
             $(this).parent().parent().remove();
         });
-        $('#order').on('click', function() {
-            console.log('order');
-        });
+
         $scope.show_detail = function(product) {
             console.log(product);
             $scope.image_detail = product.image;

@@ -33,6 +33,6 @@
     "node": ">=0.10.0"
   },
   "dependencies": {
-    "socket.io": "^1.6.0"
+    "socket.io": "^1.7.1"
   }
 }
