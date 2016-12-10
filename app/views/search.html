@@ -4,12 +4,12 @@
     </a>
 </div> -->
 <div class="col-md-2" ng-repeat="product in list_search">
-    <img class="col-md-12 img-thumbnail" ng-src="images/{{product.image}}">
+    <img class="col-md-12 img-thumbnail" ng-src="images/{{product.image}}" style="width:200px; height:100px">
     <p class="col-md-12">{{product.product_name}}</p>
     <p class="col-md-12">{{product.price}}</p>
-    <button type="button" class="btn btn-success col-md-12" data-toggle="modal" data-target="#productModal">Mua</button>
+    <button type="button" class="btn btn-success col-md-12" data-toggle="modal" data-target="#productModal" ng-click="show_detail(product)">Mua</button>
 </div>
-<ul class="pagination pagination-lg">
+<ul class="pagination pagination-lg" style="margin-top: 230px;">
     <li><a href="">Previous</a></li>
     <li><a href="">1</a></li>
     <li><a href="">2</a></li>
@@ -31,6 +31,7 @@
                 <!-- <img ng-src="images/{{image_detail}}"> -->
                 <p>Provider: {{provider_detail}}</p>
                 <p>Category: {{category_detail}}</p>
+                <p>Price: {{price_detail}}</p>
                 <p>Description: {{description_detail}}</p>
                 <p>Rank: {{rank_detail}}</p>
                 <p>Unit: {{unit_detail}}</p>

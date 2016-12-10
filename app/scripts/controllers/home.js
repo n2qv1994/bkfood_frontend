@@ -8,7 +8,7 @@
  * Controller of the bkFoodApp
  */
 angular.module('bkFoodApp')
-    .controller('HomeCtrl', function($scope, $rootScope, $location) {
+    .controller('HomeCtrl', function($scope, $rootScope, $location, $timeout) {
         $scope.image_detail = "";
         $scope.name_detail = "";
         $scope.provider_detail = "";
@@ -20,19 +20,19 @@ angular.module('bkFoodApp')
         var hide = true;
         var username = "";
         var socket = null;
-        var key_param = "username=giapvn";
-        socket = io.connect('http://localhost:3000/', { reconnect: true, query: key_param, forceNew: true });
-        $('#order').on('click', function() {
-            var data = {};
-            data.from = username;
-            data.to = "giapvn";
-            data.message = "dm Giap Tuat";
-            socket.emit('order', data);
-        });
-        socket.on('order', function(data) {
-            $rootScope.verity = "Dm Giap Tuat";
-            $("#verifyModal").modal("show");
-        });
+        // var key_param = "username=giapvn";
+        // socket = io.connect('http://localhost:3000/', { reconnect: true, query: key_param, forceNew: true });
+        // $('#order').on('click', function() {
+        //     var data = {};
+        //     data.from = username;
+        //     data.to = "giapvn";
+        //     data.message = "dm Giap Tuat";
+        //     socket.emit('order', data);
+        // });
+        // socket.on('order', function(data) {
+        //     $rootScope.verity = "Dm Giap Tuat";
+        //     $("#verifyModal").modal("show");
+        // });
 
         $.ajax({
             url: "http://localhost:3000/api/getallproduct",
@@ -42,34 +42,29 @@ angular.module('bkFoodApp')
             },
             dataType: "json",
             success: function(result) {
-                console.log(result);
+                var list_vegetable = [];
+                var list_seafood = [];
+                var list_meat = [];
+                var list_other = [];
+                for (var i = 0; i < result.length; i++) {
+                    if (result[i].category == "vegetable") {
+                        list_vegetable.push(result[i]);
+                    }
+                    if (result[i].category == "meat") {
+                        list_meat.push(result[i]);
+                    }
+                    if (result[i].category == "seafood") {
+                        list_seafood.push(result[i]);
+                    } else {
+                        list_other.push(result[i]);
+                    }
+                };
                 $scope.$apply(function() {
-                    $scope.list_product = result;
+                    $scope.list_product_vegetable = list_vegetable;
+                    $scope.list_product_seafood = list_seafood;
+                    $scope.list_product_meat = list_meat;
+                    $scope.list_product_other = list_other;
                 });
-                $('#myCarouselProduct').carousel({
-                    interval: 40000
-                });
-                // $('.carousel-product .item').each(function() {
-                //     var next = $(this).next();
-                //     if (!next.length) {
-                //         next = $(this).siblings(':first');
-                //     }
-                //     next.children(':first-child').clone().appendTo($(this));
-
-                //     for (var i = 0; i < 2; i++) {
-
-                //         next = next.next();
-
-                //         if (!next.length) {
-
-                //             next = jQuery(this).siblings(':first');
-
-                //         }
-
-                //         next.children(':first-child').clone().appendTo($(this));
-
-                //     }
-                // });
             },
             error: function(result) {
                 console.log({
@@ -128,8 +123,8 @@ angular.module('bkFoodApp')
                 dataType: "json",
                 success: function(result) {
                     console.log(result);
-                    $rootScope.root_id = result.user._id;
-                    username = result.user.username;
+                    $rootScope.root_id = result._id;
+                    username = result.username;
                     $("#loginModal").modal("hide");
                     $("#login").hide();
                     $("#signup").hide();
@@ -151,17 +146,18 @@ angular.module('bkFoodApp')
                     //     socket.emit('order', data);
                     // });
                     $scope.$apply(function() {
-                        $rootScope.welcome = result.user.username;
-                        $rootScope.info_name = result.user.name;
-                        $rootScope.info_password = result.user.password;
-                        $rootScope.info_email = result.user.email;
-                        $rootScope.info_address = result.user.location;
-                        $rootScope.info_phonenumber = result.user.phone;
+                        $rootScope.welcome = result.username;
+                        $rootScope.info_name = result.name;
+                        $rootScope.info_password = result.password;
+                        $rootScope.info_email = result.email;
+                        $rootScope.info_address = result.location;
+                        $rootScope.info_phonenumber = result.phone;
                     });
                 },
                 error: function(result) {
                     $rootScope.message_res = result.responseText;
                     $("#wrong").show();
+                    console.log(result);
                     console.log(result.responseText);
                 }
             });
@@ -261,10 +257,9 @@ angular.module('bkFoodApp')
             $("#infomation").hide(1000);
             hide = true;
         }
-        $scope.purchase = function() {
-            var product = "<tr><td>Picture</td><td>" + $scope.name_detail + "</td><td>" + $scope.price + "</td><td><button class='delete'>Delete</button></td></tr>";
+        $scope.purchase = function() {    
+            var product = "<tr><td>Picture</td><td>" + $scope.name_detail + "</td><td><input type='text' value='1' style='width:30px'></td><td>" + $scope.price_detail + "</td><td><button class='delete'>Delete</button></td></tr>";
             $("#cart").append(product);
-
         };
         $("#cart").on('click', '.delete', function() {
             console.log('delete');
@@ -280,9 +275,34 @@ angular.module('bkFoodApp')
             $scope.description_detail = product.description;
             $scope.rank_detail = product.rank;
             $scope.unit_detail = product.unit;
-            $scope.price = product.price;
+            $scope.price_detail = product.price;
         };
         $rootScope.upgrade = function() {
-            $location.path("/management");
+            $("#upgradeModal").modal('show');
         };
+        $rootScope.upgrade_done = function() {
+            $location.path("/management");
+            var data = {
+                username: username,
+                radius: $("#darius_upgrade").val()
+            };
+            $.ajax({
+                url: "http://localhost:3000/api/upgrade",
+                type: "post",
+                data: JSON.stringify(data),
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                dataType: "json",
+                success: function(result) {
+                    console.log("successssssssssssssssss");
+                    $("#upgradeModal").modal('hide');
+                    // $location.path("/management");
+                },
+                error: function(result) {
+                    console.log(result);
+                    console.log("error");
+                }
+            });
+        }
     });

@@ -23,7 +23,7 @@ angular.module('bkFoodApp')
                     // $scope.$apply(function() {
                     //     $scope.list_product = result;
                     // });
-                    $scope.list_search = result;	
+                    $scope.list_search = result;
                 },
                 error: function(result) {
                     console.log({
@@ -34,4 +34,19 @@ angular.module('bkFoodApp')
                 }
             });
         }
+        $scope.show_detail = function(product) {
+            console.log(product);
+            $scope.image_detail = product.image;
+            $scope.name_detail = product.product_name;
+            $scope.provider_detail = product.provider_id;
+            $scope.category_detail = product.category;
+            $scope.description_detail = product.description;
+            $scope.rank_detail = product.rank;
+            $scope.unit_detail = product.unit;
+            $scope.price_detail = product.price;
+        };
+        $scope.purchase = function() {
+            var product = "<tr><td>Picture</td><td>" + $scope.name_detail + "</td><td><input type='text' value='1' style='width:30px'></td><td>" + $scope.price_detail + "</td><td><button class='delete'>Delete</button></td></tr>";
+            $("#cart").append(product);
+        };
     });

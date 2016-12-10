@@ -36,7 +36,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="/#/">BK XXX XXX </a>
+                <a class="navbar-brand" href="/#/">&nbsp &nbsp  &nbsp  BK FOOD &nbsp &nbsp  &nbsp  </a>
             </div>
             <div class="collapse navbar-collapse" id="myNavbar">
                 <ul class="nav navbar-nav">
@@ -105,13 +105,16 @@
             </div>
         </form>
         <div>
-            <div class="col-md-3 col-md-offset-1">
+            <div class="col-md-2" style="padding-left:0px">
                 <button type="button" class="btn btn-warning" style="margin-top: -10px;" ng-click="edit_info()">Save</button>
             </div>
-            <div class="col-md-4">
+             <div class="col-md-2">
+                <button type="button" class="btn btn-warning" style="margin-top: -10px;" ng-click="delete_account()">Delete</button>
+            </div>
+            <div class="col-md-4"  style="padding-left:40px">
                 <button type="button" class="btn btn-warning" style="margin-top: -10px;" ng-click="upgrade()">Upgrade</button>
             </div>
-            <div class="col-md-3">
+            <div class="col-md-2"  style="padding-left:32px">
                 <button type="button" class="btn btn-danger" style="margin-top: -10px;" ng-click="cancel()">Cancel</button>
             </div>
         </div>
@@ -134,7 +137,8 @@
                             <input type="password" class="form-control" id="pwd_login" placeholder="Enter password">
                         </div>
                         <div class="alert alert-danger" style="display:none" id="wrong">
-                            <strong>Warning!</strong> {{message_res}}.
+                            <strong>Warning! Username or password incorrect</strong>
+                            <!-- {{message_res}}. -->
                         </div>
                         <div class="checkbox">
                             <label>
@@ -184,7 +188,7 @@
                         </div>
                         <div class="form-group">
                             <label for="text">Is Man?</label>
-                            <input type="checkbox" id="sex_signup" >
+                            <input type="checkbox" id="sex_signup">
                         </div>
                     </form>
                     <div class="alert alert-success" style="display:none" id="sign_up_success">
@@ -221,6 +225,39 @@
             </div>
         </div>
     </div>
+    <!-- Modal upgrade -->
+    <div class="modal fade" id="upgradeModal" role="dialog">
+        <div class="modal-dialog">
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <form name="sign_up_form">
+                        <div class="form-group">
+                            <label for="text">Radius:</label>
+                            <input type="text" class="form-control" id="darius_upgrade" placeholder="Enter darius">
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Time Begin</label>
+                            <input type="date" class="form-control" id="time_begin">
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Time End</label>
+                            <input type="date" class="form-control" id="time_begin">
+                        </div>
+                    </form>
+                    <div class="alert alert-danger" style="display:none" id="upgrade_error">
+                        <strong>Error!</strong>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-default" ng-click="upgrade_done()">Upgrade</button>
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Modal upgrade -->
     <!-- Carousel slider -->
     <div id="myCarouselHeader" class="myCarouselHeader carousel slide" data-ride="carousel">
         <!-- Indicators -->
@@ -286,7 +323,8 @@
             <thead>
                 <tr>
                     <th>Image</th>
-                    <th>Name of Product</th>
+                    <th>Product</th>
+                    <th>Amount</th>
                     <th>Price</th>
                     <th>Option</th>
                 </tr>
@@ -328,7 +366,7 @@
                             <br>
                             <abbr title="Phone">Phone:</abbr> 0123 456 789
                         </address>
-                        <div>{{root_id}}</div>
+                        <div style="display:none">{{root_id}}</div>
                     </div>
                 </div>
             </div>

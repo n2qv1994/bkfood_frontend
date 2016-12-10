@@ -7,13 +7,13 @@
                 <div class="panel-heading"><a ng-href="" ng-click="get_all()">Product</a></div>
             </div>
             <div class="panel panel-info" style="height:20px">
-                <div class="panel-heading"><a ng-href="" ng-click="get_banh()">Banh</a></div>
+                <div class="panel-heading"><a ng-href="" ng-click="get_banh()">Vegetable</a></div>
             </div>
             <div class="panel panel-success" style="height:20px">
-                <div class="panel-heading"><a ng-href="" ng-click="get_gai()">Gai</a></div>
+                <div class="panel-heading"><a ng-href="" ng-click="get_gai()">Seafood</a></div>
             </div>
             <div class="panel panel-info" style="height:20px">
-                <div class="panel-heading"><a ng-href="">Category 3</a></div>
+                <div class="panel-heading"><a ng-href="">Meat</a></div>
             </div>
             <div class="panel panel-success" style="height:20px">
                 <div class="panel-heading"><a ng-href="">Category 4</a></div>
@@ -22,29 +22,29 @@
                 <div class="panel-heading"><a ng-href="">Category 5</a></div>
             </div>
             <div class="panel panel-success" style="height:20px">
-                <div class="panel-heading"><a ng-href="">Category 6</a></div>
+                <div class="panel-heading"><a ng-href="">Other</a></div>
             </div>
             <button class="btn btn-info" style="height:30px;width:268px" data-toggle="modal" data-target="#managementProductModal">Add product</button>
         </div>
     </div>
-    <div class="col-md-8" style="background-color:#e3e5e8;height:365px;" id="product-provider">
+    <div class="col-md-8" style="background-color:#e3e5e8;height:400px;" id="product-provider">
         <div id="all-product-manager">
             <div class="col-md-3" ng-repeat="product in list_product_provider" id="{{product._id}}">
-                <img ng-src="images/{{product.image}}" style="width:150px; height=150px">
+                <img ng-src="images/{{product.image}}" style="width:150px; height:100px">
                 <button class="col-md-5 btn btn-info" ng-click="info_product(product)" data-toggle="modal" data-target="#managementInfoProductModal">Edit</button>
                 <button class="col-md-6 col-md-offset-1 btn btn-danger" ng-click="remove_product(product)">Remove</button>
             </div>
         </div>
         <div id="banh-product-manager" style="display:none">
             <div class="col-md-3" ng-repeat="product in list_banh" id="{{product._id}}">
-                <img ng-src="images/{{product.image}}" style="width:150px; height=150px">
+                <img ng-src="images/{{product.image}}" style="width:150px; height:100px">
                 <button class="col-md-5 btn btn-info" ng-click="info_product(product)" data-toggle="modal" data-target="#managementInfoProductModal">Edit</button>
                 <button class="col-md-6 col-md-offset-1 btn btn-danger" ng-click="remove_product(product)">Remove</button>
             </div>
         </div>
         <div id="gai-product-manager" style="display:none">
             <div class="col-md-3" ng-repeat="product in list_gai" id="{{product._id}}">
-                <img ng-src="images/{{product.image}}" style="width:150px; height=150px">
+                <img ng-src="images/{{product.image}}" style="width:150px; height:100px">
                 <button class="col-md-5 btn btn-info" ng-click="info_product(product)" data-toggle="modal" data-target="#managementInfoProductModal">Edit</button>
                 <button class="col-md-6 col-md-offset-1 btn btn-danger" ng-click="remove_product(product)">Remove</button>
             </div>
