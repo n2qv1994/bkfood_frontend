@@ -1,4 +1,4 @@
-'use strict';
+'use stricti';
 
 /**
  * @ngdoc function
@@ -201,41 +201,61 @@ angular.module('bkFoodApp')
             });
         };
         $rootScope.sign_up = function() {
-            var data = {
-                name: $("#name_signup").val(),
-                username: $("#username_signup").val(),
-                password: $("#pwd_signup").val(),
-                email: $("#email_signup").val(),
-                location: $("#address_signup").val(),
-                phone: $("#phonenumber_signup").val()
-            };
-            $.ajax({
-                url: "http://localhost:3000/api/signup",
-                type: "post",
-                data: JSON.stringify(data),
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                dataType: "json",
-                success: function(result) {
-                    $("#name_signup").val("");
-                    $("#username_signup").val("");
-                    $("#pwd_signup").val("");
-                    $("#email_signup").val("");
-                    $("#address_signup").val("");
-                    $("#phonenumber_signup").val("");
-                    $("#sign_up_success").show();
-                    $("#sign_up_error").hide();
-                },
-                error: function(result) {
-                    console.log(result);
-                    $("#sign_up_success").hide();
-                    $("#sign_up_error").show();
-                    $scope.$apply(function() {
-                        $rootScope.message_res_signup = result.responseText;
-                    });
-                }
-            });
+            $("#sign_up_success").hide();
+            $("#sign_up_error").hide();
+            var name_signup = $("#name_signup").val();
+            var username_signup = $("#username_signup").val();
+            var password_signup = $("#pwd_signup").val();
+            var email_signup = $("#email_signup").val();
+            var location_signup = $("#address_signup").val();
+            var phonenumber_signup = $("#phonenumber_signup").val();
+            if (username_signup == "" || password_signup == "") {
+                $("#sign_up_error").show();
+                $rootScope.message_res_signup = "username and password not null"
+            } else {
+                var data = {
+                    name: name_signup,
+                    username: username_signup,
+                    password: password_signup,
+                    email: email_signup,
+                    location: location_signup,
+                    phone: phonenumber_signup
+                };
+                $.ajax({
+                    url: "http://localhost:3000/api/signup",
+                    type: "post",
+                    data: JSON.stringify(data),
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    dataType: "json",
+                    success: function(result) {
+                        $rootScope.verify = "sign up success";
+                        $("#signupModal").modal("hide");
+                        $("#verifyModal").modal("show");
+                        $("#sign_up_success").hide();
+                        $("#sign_up_error").hide();
+                        $("#name_signup").val("");
+                        $("#username_signup").val("");
+                        $("#pwd_signup").val("");
+                        $("#email_signup").val("");
+                        $("#address_signup").val("");
+                        $("#phonenumber_signup").val("");
+                        $("#sign_up_success").show();
+                        $("#sign_up_error").hide();
+                    },
+                    error: function(result) {
+                        console.log(result);
+                        $("#sign_up_success").hide();
+                        $("#sign_up_error").show();
+                        $scope.$apply(function() {
+                            $rootScope.message_res_signup = result.responseText;
+                        });
+                    }
+                });
+
+            }
+
         };
         $rootScope.cancel = function() {
             $("#infomation").hide(1000);
