@@ -231,8 +231,7 @@
                                             <th>Product</th>
                                             <th>Amount</th>
                                             <th>Price</th>
-                                            <th>Message</th
-                                        </tr>
+                                            <th>Message</th </tr>
                                     </thead>
                                     <tbody id="notify_order">
                                     </tbody>
@@ -243,6 +242,38 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-primary" data-dismiss="modal">Accept</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Modal order 2 -->
+    <div class="modal fade" id="orderModal2" role="dialog">
+        <div class="modal-dialog modal-md">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Verify</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label for="comment">receiving location:</label>
+                        <textarea class="form-control" rows="2" id="comment"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="comment">receiving time:</label>
+                        <textarea class="form-control" rows="2"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="comment">payments:</label>
+                        <label class="radio-inline">
+                            <input type="radio" name="optradio">Credit</label>
+                        <label class="radio-inline">
+                            <input type="radio" name="optradio">Cash</label>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" data-dismiss="modal" id="order2">Order</button>
                     <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                 </div>
             </div>
@@ -374,7 +405,7 @@
             <tbody id="cart">
             </tbody>
         </table>
-        <button id="order">Order</button>
+        <button id="order" onclick="closeNav()">Order</button>
     </div>
     <!-- SiderBar -->
     <br>

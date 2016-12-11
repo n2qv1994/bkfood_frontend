@@ -87,7 +87,8 @@
                     </div>
                     <div class="form-group">
                         <label for="text">Image:</label>
-                        <input type="text" class="form-control" id="image-product" placeholder="Enter image product">
+                        <button>Choose Image</button>
+                        <!-- <input type="text" class="form-control" id="image-product" placeholder="Enter image product"> -->
                     </div>
                     <div class="form-group">
                         <label for="text">Description:</label>
@@ -160,6 +161,26 @@
                 <p>{{verity}}</p>
             </div>
             <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Remove verify -->
+<div class="modal fade" id="removeModal" role="dialog">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Notification</h4>
+            </div>
+            <div class="modal-body">
+                <div class="alert alert-success">
+                    <strong>You want to remove product ?</strong>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" data-dismiss="modal" id="delete_product">Delete</button>
                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
             </div>
         </div>

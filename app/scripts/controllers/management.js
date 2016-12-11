@@ -76,7 +76,8 @@ angular.module('bkFoodApp')
                 price: $("#price-product").val(),
                 unit: $("#unit-product").val(),
                 category: $("#category-product").val(),
-                image: $("#image-product").val(),
+                // image: $("#image-product").val(),
+                image: "rau19.jpg",
             };
             $.ajax({
                 url: "http://localhost:3000/api/addproduct",
@@ -99,23 +100,26 @@ angular.module('bkFoodApp')
             });
         };
         $scope.remove_product = function(product) {
-            $.ajax({
-                url: "http://localhost:3000/api/removeproduct/" + product._id,
-                type: "get",
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                dataType: "json",
-                success: function(result) {
-                    console.log(result);
-                    $("#" + product._id).remove();
-                },
-                error: function(result) {
-                    // $rootScope.message_res = result.responseText;
-                    // $("#wrong").show();
-                    // console.log(result.responseText);
-                    console.log("err");
-                }
+            $("#removeModal").modal("show");
+            $("#delete_product").on('click', function() {
+                $.ajax({
+                    url: "http://localhost:3000/api/removeproduct/" + product._id,
+                    type: "get",
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    dataType: "json",
+                    success: function(result) {
+                        console.log(result);
+                        $("#" + product._id).remove();
+                    },
+                    error: function(result) {
+                        // $rootScope.message_res = result.responseText;
+                        // $("#wrong").show();
+                        // console.log(result.responseText);
+                        console.log("err");
+                    }
+                });
             });
         };
         $scope.info_product = function(product) {

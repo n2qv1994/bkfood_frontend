@@ -24,9 +24,17 @@ angular.module('bkFoodApp')
         var key_param = "username=giapvn";
         socket = io.connect('http://localhost:3000/', { reconnect: true, query: key_param, forceNew: true });
         $('#order').on('click', function() {
+            $("#orderModal2").modal("show");
+        });
+        
+        $('#order2').on('click', function() {
+            $("#orderModal2").modal("hide");
+            $("#cart").empty();
+            $("#verifyModal").modal("show");
             var data = {};
             data.from = username;
             data.to = "giapvn";
+            data.message = $("#comment").val();
             data.name = curren_user.name;
             data.phone = curren_user.phone;
             data.order = list_order;
@@ -37,8 +45,8 @@ angular.module('bkFoodApp')
         socket.on('order', function(data) {
             console.log(data.order.length);
             $rootScope.order = data.name;
-            for(var i = 0; i < data.order.length; i++) {
-                var order = "<tr><td>" + data.name + "</td><td>" + data.phone + "</td><td>" + data.order[i].product + "</td><td>1</td><td>"+data.order[i].price+"</td><td>" + data.order[i].message + "</td></tr>";
+            for (var i = 0; i < data.order.length; i++) {
+                var order = "<tr><td>" + data.name + "</td><td>" + data.phone + "</td><td>" + data.order[i].product + "</td><td>1</td><td>" + data.order[i].price + "</td><td>" + data.message + "</td></tr>";
                 $("#notify_order").append(order);
             };
             $("#orderModal").modal("show");
@@ -275,7 +283,7 @@ angular.module('bkFoodApp')
             var product = {};
             product.product = $scope.name_detail;
             product.price = $scope.price_detail;
-            product.message = "gui trong khoang 9h - 10h hom nay";
+            // product.message = "gui trong khoang 9h - 10h hom nay";
             list_order.push(product);
         };
         $("#cart").on('click', '.delete', function() {
