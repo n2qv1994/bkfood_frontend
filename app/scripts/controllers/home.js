@@ -19,20 +19,30 @@ angular.module('bkFoodApp')
         $scope.price_detail = "";
         var hide = true;
         var username = "";
-        var socket = null;
-        // var key_param = "username=giapvn";
-        // socket = io.connect('http://localhost:3000/', { reconnect: true, query: key_param, forceNew: true });
-        // $('#order').on('click', function() {
-        //     var data = {};
-        //     data.from = username;
-        //     data.to = "giapvn";
-        //     data.message = "dm Giap Tuat";
-        //     socket.emit('order', data);
-        // });
-        // socket.on('order', function(data) {
-        //     $rootScope.verity = "Dm Giap Tuat";
-        //     $("#verifyModal").modal("show");
-        // });
+        var curren_user = {};
+        var list_order = [];
+        var key_param = "username=giapvn";
+        socket = io.connect('http://localhost:3000/', { reconnect: true, query: key_param, forceNew: true });
+        $('#order').on('click', function() {
+            var data = {};
+            data.from = username;
+            data.to = "giapvn";
+            data.name = curren_user.name;
+            data.phone = curren_user.phone;
+            data.order = list_order;
+            // JSON.stringify({ "data": data })
+            console.log(data);
+            socket.emit('order', data);
+        });
+        socket.on('order', function(data) {
+            console.log(data.order.length);
+            $rootScope.order = data.name;
+            for(var i = 0; i < data.order.length; i++) {
+                var order = "<tr><td>" + data.name + "</td><td>" + data.phone + "</td><td>" + data.order[i].product + "</td><td>1</td><td>"+data.order[i].price+"</td><td>" + data.order[i].message + "</td></tr>";
+                $("#notify_order").append(order);
+            };
+            $("#orderModal").modal("show");
+        });
 
         $.ajax({
             url: "http://localhost:3000/api/getallproduct",
@@ -122,9 +132,11 @@ angular.module('bkFoodApp')
                 },
                 dataType: "json",
                 success: function(result) {
-                    console.log(result);
+
                     $rootScope.root_id = result._id;
                     username = result.username;
+                    curren_user = result;
+                    console.log(curren_user);
                     $("#loginModal").modal("hide");
                     $("#login").hide();
                     $("#signup").hide();
@@ -257,9 +269,14 @@ angular.module('bkFoodApp')
             $("#infomation").hide(1000);
             hide = true;
         }
-        $scope.purchase = function() {    
+        $scope.purchase = function() {
             var product = "<tr><td>Picture</td><td>" + $scope.name_detail + "</td><td><input type='text' value='1' style='width:30px'></td><td>" + $scope.price_detail + "</td><td><button class='delete'>Delete</button></td></tr>";
             $("#cart").append(product);
+            var product = {};
+            product.product = $scope.name_detail;
+            product.price = $scope.price_detail;
+            product.message = "gui trong khoang 9h - 10h hom nay";
+            list_order.push(product);
         };
         $("#cart").on('click', '.delete', function() {
             console.log('delete');
