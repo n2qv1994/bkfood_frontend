@@ -1,14 +1,19 @@
+<style type="text/css">
+.card-1 {
+    box-shadow: 0 19px 38px rgba(0, 0, 0, 0.30), 0 15px 12px rgba(0, 0, 0, 0.22);
+}
+</style>
 <div class="container">
     <div class="col-md-12" style="">
         <div class="alert alert-info" style="">
             <strong>Hang moi ve!</strong>
         </div>
         <div class="carousel new-product-carousel slide" id="newProduct" style="">
-            <div class="carousel-inner">
+            <div class="carousel-inner" style=" height: 330px; padding-top: 10px;">
                 <div class="item active">
                     <a ng-href="">
                         <div class="col-lg-3 col-xs-3 col-md-3 col-sm-3" data-toggle="modal" data-target="#productModal">
-                            <div class="product" style="background-image: url('images/11.jpg');">
+                            <div class="product card-1" style="background-image: url('images/11.jpg');">
                                 <img src="images/new-star.gif" style="width:80px;height:80px">
                                 <p class="product-name ">Nuoc cam</p>
                                 <p class="product-price ">99.000 $</p>
@@ -19,7 +24,7 @@
                 <div class="item">
                     <a ng-href="">
                         <div class="col-lg-3 col-xs-3 col-md-3 col-sm-3" data-toggle="modal" data-target="#productModal">
-                            <div class="product" style="background-image: url('images/12.jpg');">
+                            <div class="product card-1" style="background-image: url('images/12.jpg');">
                                 <img src="images/new-star.gif" style="width:80px;height:80px">
                                 <h2 class="product-name ">Nuoc tao</h2>
                                 <h2 class="product-price ">99.000 $</h2>
@@ -30,7 +35,7 @@
                 <div class="item">
                     <a ng-href="">
                         <div class="col-lg-3 col-xs-3 col-md-3 col-sm-3" data-toggle="modal" data-target="#productModal">
-                            <div class="product" style="background-image: url('images/13.jpg');">
+                            <div class="product card-1" style="background-image: url('images/13.jpg');">
                                 <img src="images/new-star.gif" style="width:80px;height:80px">
                                 <h2 class="product-name "><span>Nuoc dua</span></h2>
                                 <h2 class="product-price "><span>99.000 $</span></h2>
@@ -41,7 +46,7 @@
                 <div class="item">
                     <a ng-href="">
                         <div class="col-lg-3 col-xs-3 col-md-3 col-sm-3" data-toggle="modal" data-target="#productModal">
-                            <div class="product" style="background-image: url('images/14.jpg');">
+                            <div class="product card-1" style="background-image: url('images/14.jpg');">
                                 <img src="images/new-star.gif" style="width:80px;height:80px">
                                 <h2 class="product-name "><span>Nuoc dua hau</span></h2>
                                 <h2 class="product-price "><span>99.000 $</span></h2>
@@ -55,13 +60,13 @@
         </div>
     </div>
     <div ng-repeat="product in list_product_vegetable" class="item">
-        <div class="col-md-3" style="padding-top:50px">
-            <a ng-href="">
+        <div class="col-md-3 " style="padding-top:20px; padding-bottom:20px">
+            <div class="card-1 img-thumbnail">
                 <img ng-src="images/{{product.image}}" style="width:250px; height:150px">
                 <h3 class="col-md-12 center group1">{{product.product_name}}</h3>
                 <p class="col-md-12 center group1">{{product.price}}</p>
                 <button type="button" class="btn btn-success col-md-12" data-toggle="modal" data-target="#productModal" ng-click="show_detail(product)">Mua</button>
-            </a>
+            </div>
         </div>
     </div>
     <div class="col-md-12">
@@ -72,22 +77,22 @@
             <div class="carousel-inner">
                 <div class="item active">
                     <div class="col-md-3">
-                        <a ng-href="">
-                            <img src="images/1.jpg" style="width:250px; height:150px">
+                        <div class="card-1 img-thumbnail" style="margin-top: 10px; margin-bottom: 20px;">
+                            <img src="images/1.jpg" style="width:240px; height:150px">
                             <h3 class="col-md-12 center group1">Banh kem</h3>
                             <p class="col-md-12 center group1">90.000 $</p>
                             <button type="button" class="btn btn-success col-md-12" data-toggle="modal" data-target="#productModal">Mua</button>
-                        </a>
+                        </div>
                     </div>
                 </div>
                 <div ng-repeat="product in list_product_vegetable" class="item">
                     <div class="col-md-3">
-                        <a ng-href="">
-                            <img ng-src="images/{{product.image}}" style="width:250px; height:150px">
+                        <div class="card-1 img-thumbnail" style="margin-top: 10px; margin-bottom: 20px;">
+                            <img ng-src="images/{{product.image}}" style="width:240px; height:150px">
                             <h3 class="col-md-12 center group1">{{product.product_name}}</h3>
                             <p class="col-md-12 center group1">{{product.price}}</p>
                             <button type="button" class="btn btn-success col-md-12" data-toggle="modal" data-target="#productModal" ng-click="show_detail()">Mua</button>
-                        </a>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -103,22 +108,22 @@
             <div class="carousel-inner">
                 <div class="item active">
                     <div class="col-md-3">
-                        <a ng-href="">
-                            <img src="images/1.jpg" style="width:250px; height:150px">
+                        <div class="card-1 img-thumbnail" style="margin-top: 10px; margin-bottom: 20px;">
+                            <img src="images/1.jpg" style="width:240px; height:150px">
                             <h3 class="col-md-12 center group2">Banh kem</h3>
                             <p class="col-md-12 center group2">90.000 $</p>
                             <button type="button" class="btn btn-primary col-md-12" data-toggle="modal" data-target="#productModal">Mua</button>
-                        </a>
+                        </div>
                     </div>
                 </div>
                 <div ng-repeat="product in list_product_seafood" class="item">
                     <div class="col-md-3">
-                        <a ng-href="">
-                            <img ng-src="images/{{product.image}}" style="width:250px; height:150px">
+                        <div class="card-1 img-thumbnail" style="margin-top: 10px; margin-bottom: 20px;">
+                            <img ng-src="images/{{product.image}}" style="width:240px; height:150px">
                             <h3 class="col-md-12 center group2">{{product.product_name}}</h3>
                             <p class="col-md-12 center group2">{{product.price}}</p>
                             <button type="button" class="btn btn-primary col-md-12" data-toggle="modal" data-target="#productModal" ng-click="show_detail()">Mua</button>
-                        </a>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -134,22 +139,22 @@
             <div class="carousel-inner">
                 <div class="item active">
                     <div class="col-md-3">
-                        <a ng-href="">
-                            <img src="images/1.jpg" style="width:250px; height:150px">
+                        <div class="card-1 img-thumbnail" style="margin-top: 10px; margin-bottom: 20px;">
+                            <img src="images/1.jpg" style="width:240px; height:150px">
                             <h3 class="col-md-12 center group3">Banh kem</h3>
                             <p class="col-md-12 center group3">90.000 $</p>
                             <button type="button" class="btn btn-danger col-md-12" data-toggle="modal" data-target="#productModal">Mua</button>
-                        </a>
+                        </div>
                     </div>
                 </div>
                 <div ng-repeat="product in list_product_meat" class="item">
                     <div class="col-md-3">
-                        <a ng-href="">
-                            <img ng-src="images/{{product.image}}" style="width:250px; height:150px">
+                        <div class="card-1 img-thumbnail" style="margin-top: 10px; margin-bottom: 20px;">
+                            <img ng-src="images/{{product.image}}" style="width:240px; height:150px">
                             <h3 class="col-md-12 center group3">{{product.product_name}}</h3>
                             <p class="col-md-12 center group3">{{product.price}}</p>
                             <button type="button" class="btn btn-danger col-md-12" data-toggle="modal" data-target="#productModal" ng-click="show_detail()">Mua</button>
-                        </a>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -165,22 +170,22 @@
             <div class="carousel-inner">
                 <div class="item active">
                     <div class="col-md-3">
-                        <a ng-href="">
-                            <img src="images/1.jpg" style="width:250px; height:150px">
+                        <div class="card-1 img-thumbnail" style="margin-top: 10px; margin-bottom: 20px;">
+                            <img src="images/1.jpg" style="width:240px; height:150px">
                             <h3 class="col-md-12 center group4">Banh kem</h3>
                             <p class="col-md-12 center group4">90.000 $</p>
                             <button type="button" class="btn btn-warning col-md-12" data-toggle="modal" data-target="#productModal">Mua</button>
-                        </a>
+                        </div>
                     </div>
                 </div>
                 <div ng-repeat="product in list_product_other" class="item">
                     <div class="col-md-3">
-                        <a ng-href="">
-                            <img ng-src="images/{{product.image}}" style="width:250px; height:150px">
+                        <div class="card-1 img-thumbnail" style="margin-top: 10px; margin-bottom: 20px;">
+                            <img ng-src="images/{{product.image}}" style="width:240px; height:150px">
                             <h3 class="col-md-12 center group4">{{product.product_name}}</h3>
                             <p class="col-md-12 center group4">{{product.price}}</p>
                             <button type="button" class="btn btn-warning col-md-12" data-toggle="modal" data-target="#productModal" ng-click="show_detail()">Mua</button>
-                        </a>
+                        </div>
                     </div>
                 </div>
             </div>
