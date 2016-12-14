@@ -8,31 +8,65 @@
  * Controller of the bkFoodApp
  */
 angular.module('bkFoodApp')
-    .controller('SearchCtrl', function($scope, $rootScope, $log) {
+    .controller('SearchCtrl', function($scope, $rootScope, $log, $timeout) {
+        $scope.list_search = null;
+        $scope.list_provider_search = null;
         $rootScope.search = function() {
-            var _url = "http://localhost:3000/api/search/" + $('#search').val();
-            $.ajax({
-                url: _url,
-                type: "get",
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                dataType: "json",
-                success: function(result) {
-                    console.log(result);
-                    // $scope.$apply(function() {
-                    //     $scope.list_product = result;
-                    // });
-                    $scope.list_search = result;
-                },
-                error: function(result) {
-                    console.log({
-                        message: {
-                            error: true
-                        }
-                    });
-                }
-            });
+
+            if ($("#sel1").val() == "Product") {
+                var _url = "http://localhost:3000/api/search/" + $('#search').val();
+                $.ajax({
+                    url: _url,
+                    type: "get",
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    dataType: "json",
+                    success: function(result) {
+                        // $scope.$apply(function() {
+                        //     $scope.list_product = result;
+                        // });
+                        $scope.list_provider_search = null;
+                        $scope.list_search = result;
+
+                    },
+                    error: function(result) {
+                        console.log({
+                            message: {
+                                error: true
+                            }
+                        });
+                    }
+                });
+            } else {
+                var _url = "http://localhost:3000/api/searchprovider/" + $('#search').val();
+                console.log($('#search').val());
+                $.ajax({
+                    url: _url,
+                    type: "get",
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    dataType: "json",
+                    success: function(result) {
+
+                        console.log(result);
+                        // $scope.$apply(function() {
+                        //     $scope.list_product = result;
+                        // });
+                        $scope.list_search = null;
+                        $scope.list_provider_search = result;
+                    },
+                    error: function(result) {
+                        console.log({
+                            message: {
+                                error: true
+                            }
+                        });
+                    }
+                });
+            }
+
         }
         $scope.show_detail = function(product) {
             console.log(product);

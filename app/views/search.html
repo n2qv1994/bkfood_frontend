@@ -3,11 +3,44 @@
         <button type="button" class="btn btn-success col-md-12" data-toggle="modal" data-target="#productModal">Mua</button>
     </a>
 </div> -->
-<div class="col-md-2" ng-repeat="product in list_search">
+<div class="col-md-2" ng-repeat="product in list_search" id="list_search">
     <img class="col-md-12 img-thumbnail" ng-src="images/{{product.image}}" style="width:200px; height:100px">
     <p class="col-md-12">{{product.product_name}}</p>
     <p class="col-md-12">{{product.price}}</p>
     <button type="button" class="btn btn-success col-md-12" data-toggle="modal" data-target="#productModal" ng-click="show_detail(product)">Mua</button>
+</div>
+<div ng-repeat="provider in list_provider_search" id="list_provider_search">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h4 class="panel-title">
+          <a data-toggle="collapse" data-parent="#accordion" href=".{{provider._id}}">{{provider.name}}</a>
+        </h4>
+        </div>
+        <div class="panel-collapse collapse {{provider._id}}">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Username</th>
+                        <th>Location</th>
+                        <th>Email</th>
+                        <th>Phone</th>
+                        <th>Avatar</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>{{provider.name}}</td>
+                        <td>{{provider.username}}</td>
+                        <td>{{provider.location}}</td>
+                        <td>{{provider.email}}</td>
+                        <td>{{provider.phone}}</td>
+                        <td>{{provider.avatar}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
 </div>
 <ul class="pagination pagination-lg" style="margin-top: 230px;">
     <li><a href="">Previous</a></li>
@@ -18,7 +51,6 @@
     <li><a href="">5</a></li>
     <li><a href="">Next</a></li>
 </ul>
-
 <!-- Modal product -->
 <div class="modal fade" id="productModal" role="dialog">
     <div class="modal-dialog modal-sm">
