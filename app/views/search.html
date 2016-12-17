@@ -3,6 +3,12 @@
         <button type="button" class="btn btn-success col-md-12" data-toggle="modal" data-target="#productModal">Mua</button>
     </a>
 </div> -->
+<style type="text/css">
+#notify_search {
+    text-align: center;
+    font-size: 20px;
+}
+</style>
 <div class="col-md-2" ng-repeat="product in list_search" id="list_search">
     <img class="col-md-12 img-thumbnail" ng-src="images/{{product.image}}" style="width:200px; height:100px">
     <p class="col-md-12">{{product.product_name}}</p>
@@ -42,6 +48,7 @@
         </div>
     </div>
 </div>
+<div class="alert alert-danger" id="notify_search" style="display:none">{{notify_search}}</div>
 <ul class="pagination pagination-lg" style="margin-top: 230px;">
     <li><a href="">Previous</a></li>
     <li><a href="">1</a></li>

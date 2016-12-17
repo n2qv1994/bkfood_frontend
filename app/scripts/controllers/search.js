@@ -26,8 +26,16 @@ angular.module('bkFoodApp')
                         // $scope.$apply(function() {
                         //     $scope.list_product = result;
                         // });
-                        $scope.list_provider_search = null;
-                        $scope.list_search = result;
+                        if (result == "") {
+                            $scope.$apply(function() {
+                                $scope.notify_search = " Not found " + $('#search').val();
+                            });
+                            $("#notify_search").show();
+                        } else {
+                            $("#notify_search").hide();
+                            $scope.list_provider_search = null;
+                            $scope.list_search = result;
+                        }
 
                     },
                     error: function(result) {
@@ -54,6 +62,9 @@ angular.module('bkFoodApp')
                         // $scope.$apply(function() {
                         //     $scope.list_product = result;
                         // });
+                        if (result == "") {
+                            $scope.notify_search = " not found" + $('#search').val();
+                        };
                         $scope.list_search = null;
                         $scope.list_provider_search = result;
                     },

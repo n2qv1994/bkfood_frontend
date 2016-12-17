@@ -24,9 +24,13 @@ angular.module('bkFoodApp')
         var key_param = "username=giapvn";
         socket = io.connect('http://localhost:3000/', { reconnect: true, query: key_param, forceNew: true });
         $('#order').on('click', function() {
-            $("#orderModal2").modal("show");
+            if (username == "") {
+                $("#verifyModal2").modal("show");
+            } else {
+                $("#orderModal2").modal("show");
+            }
         });
-        
+
         $('#order2').on('click', function() {
             $("#orderModal2").modal("hide");
             $("#cart").empty();
@@ -191,30 +195,36 @@ angular.module('bkFoodApp')
                 location: $("#info_address").val(),
                 phone: $("#info_phonenumber").val()
             };
-            $.ajax({
-                url: "http://localhost:3000/api/editprofile",
-                type: "post",
-                data: JSON.stringify(data),
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                dataType: "json",
-                success: function(result) {
-                    console.log("success");
-                    $("#infomation").hide();
-                    hide = true;
-                    $("#verifyModal").modal("show");
-                    $rootScope.verify = result.responseText;
-                },
-                error: function(result) {
-                    console.log(result);
-                    console.log("error");
-                    $("#infomation").hide();
-                    hide = true;
-                    $("#verifyModal").modal("show");
-                    $rootScope.verify = result.responseText;
-                }
-            });
+            if ($("#info_password").val() == "") {
+                $("#verifyModal3").modal("show");
+                $rootScope.status = "False";
+                $rootScope.mes = "Password not null";
+            } else {
+                $.ajax({
+                    url: "http://localhost:3000/api/editprofile",
+                    type: "post",
+                    data: JSON.stringify(data),
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    dataType: "json",
+                    success: function(result) {
+                        console.log("success");
+                        $("#infomation").hide();
+                        hide = true;
+                        $("#verifyModal").modal("show");
+                        $rootScope.verify = result.responseText;
+                    },
+                    error: function(result) {
+                        console.log(result);
+                        console.log("error");
+                        $("#infomation").hide();
+                        hide = true;
+                        $("#verifyModal").modal("show");
+                        $rootScope.verify = result.responseText;
+                    }
+                });
+            }
         };
         $rootScope.sign_up = function() {
             $("#sign_up_success").hide();
@@ -225,9 +235,18 @@ angular.module('bkFoodApp')
             var email_signup = $("#email_signup").val();
             var location_signup = $("#address_signup").val();
             var phonenumber_signup = $("#phonenumber_signup").val();
+            var confirm_pwd_signup = $("#confirm_pwd_signup").val();
             if (username_signup == "" || password_signup == "") {
                 $("#sign_up_error").show();
-                $rootScope.message_res_signup = "username and password not null"
+                $rootScope.message_res_signup = "username and password not null";
+            }
+            if (email_signup == "") {
+                $("#sign_up_error").show();
+                $rootScope.message_res_signup = "email not null";
+            }
+            if (confirm_pwd_signup != password_signup) {
+                $("#sign_up_error").show();
+                $rootScope.message_res_signup = "password confirm wrong";
             } else {
                 var data = {
                     name: name_signup,
@@ -246,6 +265,7 @@ angular.module('bkFoodApp')
                     },
                     dataType: "json",
                     success: function(result) {
+                        $rootScope.status = "Success!";
                         $rootScope.verify = "sign up success";
                         $("#signupModal").modal("hide");
                         $("#verifyModal").modal("show");
