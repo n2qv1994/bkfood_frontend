@@ -8,7 +8,7 @@
  * Controller of the bkFoodApp
  */
 angular.module('bkFoodApp')
-    .controller('HomeCtrl', function($scope, $rootScope, $location, $timeout) {
+    .controller('HomeCtrl', function($scope, $rootScope, $location, $timeout, socket) {
         $scope.image_detail = "";
         $scope.name_detail = "";
         $scope.provider_detail = "";
@@ -21,8 +21,8 @@ angular.module('bkFoodApp')
         var username = "";
         var curren_user = {};
         var list_order = [];
-        var key_param = "username=giapvn";
-        socket = io.connect('http://localhost:3000/', { reconnect: true, query: key_param, forceNew: true });
+        // var key_param = "username=giapvn";
+        // socket = io.connect('http://localhost:3000/', { reconnect: true, query: key_param, forceNew: true });
         $('#order').on('click', function() {
             if (username == "") {
                 $("#verifyModal2").modal("show");
@@ -44,17 +44,17 @@ angular.module('bkFoodApp')
             data.order = list_order;
             // JSON.stringify({ "data": data })
             console.log(data);
-            socket.emit('order', data);
+            socket.order(data);
         });
-        socket.on('order', function(data) {
-            console.log(data.order.length);
-            $rootScope.order = data.name;
-            for (var i = 0; i < data.order.length; i++) {
-                var order = "<tr><td>" + data.name + "</td><td>" + data.phone + "</td><td>" + data.order[i].product + "</td><td>1</td><td>" + data.order[i].price + "</td><td>" + data.message + "</td></tr>";
-                $("#notify_order").append(order);
-            };
-            $("#orderModal").modal("show");
-        });
+        // socket.on('order', function(data) {
+        //     console.log(data.order.length);
+        //     $rootScope.order = data.name;
+        //     for (var i = 0; i < data.order.length; i++) {
+        //         var order = "<tr><td>" + data.name + "</td><td>" + data.phone + "</td><td>" + data.order[i].product + "</td><td>1</td><td>" + data.order[i].price + "</td><td>" + data.message + "</td></tr>";
+        //         $("#notify_order").append(order);
+        //     };
+        //     $("#orderModal").modal("show");
+        // });
 
         $.ajax({
             url: "http://localhost:3000/api/getallproduct",
@@ -149,6 +149,9 @@ angular.module('bkFoodApp')
                     username = result.username;
                     curren_user = result;
                     console.log(curren_user);
+                    socket.init(username);
+                    socket.receive_order();
+
                     $("#loginModal").modal("hide");
                     $("#login").hide();
                     $("#signup").hide();
