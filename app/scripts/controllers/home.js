@@ -24,10 +24,12 @@ angular.module('bkFoodApp')
         // var key_param = "username=giapvn";
         // socket = io.connect('http://localhost:3000/', { reconnect: true, query: key_param, forceNew: true });
         $('#order').on('click', function() {
-            if (username == "") {
+            if ($rootScope.root_id == "" || $rootScope.root_id == undefined) {
                 $("#verifyModal2").modal("show");
+                return;
             } else {
                 $("#orderModal2").modal("show");
+                return;
             }
         });
 
@@ -42,20 +44,16 @@ angular.module('bkFoodApp')
             data.name = curren_user.name;
             data.phone = curren_user.phone;
             data.order = list_order;
-            // JSON.stringify({ "data": data })
-            console.log(data);
             socket.order(data);
         });
-        // socket.on('order', function(data) {
-        //     console.log(data.order.length);
-        //     $rootScope.order = data.name;
-        //     for (var i = 0; i < data.order.length; i++) {
-        //         var order = "<tr><td>" + data.name + "</td><td>" + data.phone + "</td><td>" + data.order[i].product + "</td><td>1</td><td>" + data.order[i].price + "</td><td>" + data.message + "</td></tr>";
-        //         $("#notify_order").append(order);
-        //     };
-        //     $("#orderModal").modal("show");
-        // });
 
+        $("#accept").on('click', function() {
+            console.log("aa"+socket.user_order());
+            socket.reply(socket.user_order(),"Provider accept order");
+        });
+        $("#refuse").on('click', function() {
+            socket.reply(socket.user_order(),"Provider refuse order");
+        });
         $.ajax({
             url: "http://localhost:3000/api/getallproduct",
             type: "get",
@@ -111,6 +109,9 @@ angular.module('bkFoodApp')
                     $("#welcome").hide();
                     $("#logout").hide();
                     $("#infomation").hide(1000);
+                    $scope.$apply(function() {
+                        $rootScope.root_id = "";
+                    });
                     hide = true;
                 },
                 error: function(result) {
@@ -151,27 +152,13 @@ angular.module('bkFoodApp')
                     console.log(curren_user);
                     socket.init(username);
                     socket.receive_order();
-
+                    socket.receive_reply();
                     $("#loginModal").modal("hide");
                     $("#login").hide();
                     $("#signup").hide();
                     $("#welcome").show();
                     $("#logout").show();
                     $("#management").show();
-                    // var key_param = "username=" + result.user.username;
-                    // socket = io.connect('http://localhost:3000/', { reconnect: true, query: key_param, forceNew: true });
-                    // socket.on('order', function(data) {
-                    //     $rootScope.verity = data.from + "say: " + data.message;
-                    //     $("#verifyModal").modal("show");
-                    //     console.log(data);
-                    // });
-                    // $('#order').on('click', function() {
-                    //     var data = {};
-                    //     data.from = username;
-                    //     data.to = "giapvn";
-                    //     data.message = "dm Giap Tuat";
-                    //     socket.emit('order', data);
-                    // });
                     $scope.$apply(function() {
                         $rootScope.welcome = result.username;
                         $rootScope.info_name = result.name;
@@ -315,7 +302,6 @@ angular.module('bkFoodApp')
         });
 
         $scope.show_detail = function(product) {
-            console.log(product);
             $scope.image_detail = product.image;
             $scope.name_detail = product.product_name;
             $scope.provider_detail = product.provider_id;
