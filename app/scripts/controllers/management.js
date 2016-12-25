@@ -79,7 +79,7 @@ angular.module('bkFoodApp')
                     success: function(result) {
                         $scope.$apply(function() {
                             $scope.product_add = result[0];
-                            $("#product-provider").append('<div class="col-md-3"><img src="images/' + result[0].image + '" style="width:150px; height:100px""><button class="col-md-5 btn btn-info">Edit</button><button class="col-md-6 col-md-offset-1 btn btn-danger">Remove</button></div>');
+                            $("#product-provider").append('<div class="col-md-3"><img src="images/' + result[0].image + '" style="width:150px; height:100px""><h2 style="text-align:center; color:green">'+result[0].product_name+'</h2> <button class="col-md-5 btn btn-info">Edit</button><button class="col-md-6 col-md-offset-1 btn btn-danger">Remove</button></div>');
                             $("#verifyAddModal").modal("show");
                         });
                     },

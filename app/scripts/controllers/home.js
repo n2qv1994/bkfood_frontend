@@ -48,11 +48,11 @@ angular.module('bkFoodApp')
         });
 
         $("#accept").on('click', function() {
-            console.log("aa"+socket.user_order());
-            socket.reply(socket.user_order(),"Provider accept order");
+            console.log("aa" + socket.user_order());
+            socket.reply(socket.user_order(), "Provider accept order");
         });
         $("#refuse").on('click', function() {
-            socket.reply(socket.user_order(),"Provider refuse order");
+            socket.reply(socket.user_order(), "Provider refuse order");
         });
         $.ajax({
             url: "http://localhost:3000/api/getallproduct",
@@ -177,6 +177,7 @@ angular.module('bkFoodApp')
             });
         };
         $rootScope.edit_info = function() {
+            $rootScope.verify = "";
             var data = {
                 user_id: $rootScope.root_id,
                 name: $("#info_name").val(),
@@ -202,8 +203,11 @@ angular.module('bkFoodApp')
                         console.log("success");
                         $("#infomation").hide();
                         hide = true;
-                        $("#verifyModal").modal("show");
-                        $rootScope.verify = result.responseText;
+                        $scope.$apply(function() {
+                            $("#verifyModal").modal("show");
+                            $rootScope.verify = " edit successful  ";
+                        });
+
                     },
                     error: function(result) {
                         console.log(result);
@@ -229,14 +233,17 @@ angular.module('bkFoodApp')
             if (username_signup == "" || password_signup == "") {
                 $("#sign_up_error").show();
                 $rootScope.message_res_signup = "username and password not null";
+                return;
             }
             if (email_signup == "") {
                 $("#sign_up_error").show();
                 $rootScope.message_res_signup = "email not null";
+                return;
             }
             if (confirm_pwd_signup != password_signup) {
                 $("#sign_up_error").show();
                 $rootScope.message_res_signup = "password confirm wrong";
+                return;
             } else {
                 var data = {
                     name: name_signup,

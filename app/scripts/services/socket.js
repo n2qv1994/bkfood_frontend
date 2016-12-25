@@ -37,7 +37,7 @@ angular.module('bkFoodApp')
                 user_order = data.from;
                 $rootScope.order = data.name;
                 for (var i = 0; i < data.order.length; i++) {
-                    var order = "<tr><td>" + data.name + "</td><td>" + data.phone + "</td><td>" + data.order[i].product + "</td><td>1</td><td>" + data.order[i].price + "</td><td>" + data.message + "</td></tr>";
+                    var order = "<tr><td>Quoc Viet</td><td>01664447655</td><td>" + data.order[i].product + "</td><td>1</td><td>" + data.order[i].price + "</td><td>" + data.message + "</td></tr>";
                     $("#notify_order").append(order);
                 };
                 $("#orderModal").modal("show");
